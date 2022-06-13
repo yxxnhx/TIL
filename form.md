@@ -184,3 +184,6 @@ form 태그에 지정한 action 경로에 제출
 ```
 
 **CSS에서 속성 선택하는 방법**
+```html
+header .search-box input[type="text"]
+```
