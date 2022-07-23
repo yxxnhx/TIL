@@ -49,7 +49,7 @@ for (const item of array) {
 
 ### Array의 정의를 한번 알아보자
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/91aa52a4-8765-415b-a204-9e81874920c6/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/50559373/192129656-f1c758a2-9d7c-4103-baab-37950a9dbe23.png)
 
 → 이터레이터의 규격을 따르는 것을 확인할 수 있다.
 
@@ -70,7 +70,7 @@ for (const item of obj) {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/328f2c13-da42-4db0-9464-668c8af096c5/Untitled.png)
+<img width="560" alt="스크린샷 2022-09-25 오후 1 02 00" src="https://user-images.githubusercontent.com/50559373/192129606-a5d874ce-d0f2-4351-ada4-a14fa95da009.png">
 
 → 이와 같이 오류가 나는 것을 확인할 수 있다.
 
@@ -83,10 +83,11 @@ array처럼 객체 안에 이터레이션 프로토콜을 따라가는 심볼 �
 ```jsx
 array.values();
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0fc1655c-52e6-4388-9c29-4cf2cd963384/Untitled.png)
+<img width="460" alt="스크린샷 2022-09-25 오후 1 05 16" src="https://user-images.githubusercontent.com/50559373/192129610-ffb075f8-939b-40de-849f-640052f99d81.png">
 
 → values를 호출하면 iterableIterator가 반환되는 것을 확인할 수 있다.
+
+<br />
 
 ### values()
 
@@ -99,9 +100,10 @@ for (const item of array.values()) {
 
 → 정상적으로 값이 반환되는 것을 확인할 수 있다.
 
-### keys()
+<br />
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3b5cbd15-5805-4ba3-869e-dfdee1a8210d/Untitled.png)
+### keys()
+<img width="491" alt="스크린샷 2022-09-25 오후 1 09 50" src="https://user-images.githubusercontent.com/50559373/192129686-cb4d3d02-56c6-4d15-b89e-c51d85297915.png">
 
 ```jsx
 const array = [1, 2, 3];
@@ -112,9 +114,11 @@ for (const item of array.keys()) {
 
 → array의 key값들이 반환되는 것을 확인할 수 있다.
 
-### entries()
+<br />
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eaf0d03a-4bb8-4f72-b7a1-3ac05456aabc/Untitled.png)
+### entries()
+<img width="485" alt="스크린샷 2022-09-25 오후 1 09 27" src="https://user-images.githubusercontent.com/50559373/192129691-8b2cb86e-1415-4572-a13b-ade74b7b99e8.png">
+
 
 ```jsx
 const array = [1, 2, 3];
@@ -130,15 +134,12 @@ for (const item of array.entries()) {
 ### Iterable 하다는 건 순회가 가능하다는 것!
 
 순회가 가능하기 위해서는 이터러블 프로토콜에 따르면 된다.
-
 객체 안에서 Symbol.iterator를 호출했을 때 next, next 할 수 있는 iterator를 가지고 있으면 된다
-
 심볼 정의를 가진 객체나 또틑 특정한 함수가 Iterator를 리턴한다는 것은 순회 가능한 객체이다라는 것을 알 수 있다.
 
 **순회가 가능하면 무엇을 할 수 있을까?**
 
 바로 빙글빙글 도는 연산자를 사용할 수 있다는 뜻이다!
-
 **for of, spread와 같은!**
 
 ```jsx
@@ -149,6 +150,8 @@ for (const item of obj) {
 ```
 
 이와 같이 이터러블 프로토콜에 따르지 않는 일반 객체라면, ~~for of~~ 말고 **for in**으로 사용이 가능하다!
+
+<br />
 
 ```jsx
 const obj = { 0: 1, 1: 2 };
@@ -161,9 +164,13 @@ for (const item in obj) {
 
 즉, **for in은 오브젝트 안에 있는 key를 출력하는 연산자이다!**
 
-## 조금 더 세밀하게 iterator 파헤쳐 보자!
+<br />
+<br />
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ebd1f19e-e5c0-42ea-889a-614134b35e02/Untitled.png)
+
+## 조금 더 세밀하게 iterator 파헤쳐 보자!
+<img width="463" alt="스크린샷 2022-09-25 오후 1 25 32" src="https://user-images.githubusercontent.com/50559373/192129700-e43b4411-b5c8-481f-b4b5-00249f809ffc.png">
+
 
 iterator를 호출하면 반복자를 통해서 순회가 가능하다.
 
@@ -174,6 +181,9 @@ iterator의 규칙을 확인해보면 next, return, throw가 있는 것을 확�
 이것은 옵션 사항이라는 것이다.
 
 즉, iterator는 next를 꼭 가지고 있어야만 하지만 return과 throw는 옵션이다.
+
+<br />
+<br />
 
 **고로 위와 같이 for of를 이용하여 호출도 가능하지만 수동적으로 호출하는 방법도 있다!**
 
@@ -191,15 +201,21 @@ console.log(iterator.next()); // { value: 1, done: false }
 
 이 array에서는 1, 2, 3이 있기 때문에 뒤에 더 순회할 값이 남아 있어서 false가 출력된 것을 확인할 수 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/536b861d-1866-421a-bbd4-6170891ae3e8/Untitled.png)
+<img width="496" alt="스크린샷 2022-09-25 오후 1 26 18" src="https://user-images.githubusercontent.com/50559373/192129702-7bd5273a-346a-4853-8b5b-5ec3d06b75cd.png">
+
 
 → result에는 done과 value가 있다!
+
+<br />
+
 
 ```jsx
 console.log(iterator.next().value); // 1
 ```
 
 → 값만 확인하고 싶다면 next().value를 이용하여 확인할 수 있다.
+
+<br />
 
 ```jsx
 console.log(iterator.next().value); //1
@@ -209,6 +225,9 @@ console.log(iterator.next().value); //3
 
 → 이와 같이 array를 순회하면서 순차적으로 값을 호출하는 것을 확인 할 수 있다.
 
+<br />
+
+
 **그렇다면 한번 더 호출하면 어떤 값이 나올까?**
 
 ```jsx
@@ -216,6 +235,9 @@ console.log(iterator.next().value); //undefined
 ```
 
 → 더이상 호출할 값이 없기 때문에 undefined가 나오는 것을 확인할 수 있다.
+
+<br />
+
 
 **그렇다면 done을 호출하면 어떻게 될까?**
 
@@ -234,6 +256,7 @@ console.log(iterator.next().value);
 console.log(iterator.next().value);
 console.log(iterator.next().done);
 ```
+<br />
 
 ### 위를 while문을 이용하여 좀 더 깔끔하게 정리를 해보자
 
@@ -248,6 +271,9 @@ while (true) {
 → item을 iterator의 next라고 선언 후에 item이 순회를 다 끝나서 done이 true일 때에는 while문이 종료가 되고 done이 true가 아닐 경우에는 item의 value를 콘솔에 반환해줘
 
 [이터러블 퀴즈](https://www.notion.so/b1b214f6c48541c39ef3af2c20ca5dd0)
+
+<br />
+<br />
 
 ### 이것을 조금 더 심플하게 만들어보자!
 
@@ -273,6 +299,8 @@ yield는 사용자가 다음을 호출할 때까지 기다려서 호출을 해�
 
 그래서 next의 value와 done을 확인해보았지만 콘솔에 0 false이 뜨는 것이다.
 
+<br />
+
 **그렇다면 한변 for문 다음에 콘솔에 찍어보자**
 
 ```jsx
@@ -295,6 +323,8 @@ console.log(next.value, next.done); //1 false
 
 → 다시 한번 더 next를 호출해야만 그 다음 값을 호출하는 것을 확인할 수 있다.
 
+<br />
+
 **그렇다면 중간에 multiple을 리턴해보면 어떤 결과가 나올까?**
 
 ```jsx
@@ -303,15 +333,20 @@ multiple.return(); //undefined true
 
 → 뒤에서 아무리 next를 불러도 generator가 종료되어 값은 undefined done은 true가 출력되는 것을 확인할 수 있다.
 
+<br />
+
 **그렇다면 multiple에 throw로 Error를 넣어보면 어떤 결과가 나올까?**
 
 ```jsx
 multiple.throw("Error!");
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/aa1e03f2-9f15-403f-ab6c-cb122f85d843/Untitled.png)
+<img width="551" alt="스크린샷 2022-09-25 오후 2 16 27" src="https://user-images.githubusercontent.com/50559373/192129706-f2448370-b837-4d43-aa30-c73b95a0e112.png">
+
 
 → 이와 같이 yield에 에러가 있다고 창이 뜬다!
+
+<br />
 
 **이러한 error를 잡고 싶다면 try catch문을 이용하면 잡을 수 있다!**
 
