@@ -1,5 +1,111 @@
 # 함수
 
+함수는 쉽게 말하면 일의 단위이다.
+
+또한 자주쓰는 내용들을 묶어서 함수로 만들어두면 필요할때 언제든 불러다 쓸 수 있습니다.
+
+예를 들면 햄버거를 만들 때 빵을 놓고 상추를 놓고 고기를 놓고 다시 빵으로 덮는 행위를 해야 하는데 계속해서 동일한 일을 해야 하는 경우, 프로세스 없이 그냥 계속해서 동작을 반복하다보면 실수가 일어날 수 있다. 그 실수를 방지하고 일을 좀 더 쉽게 하기 위해 만들어낸 것이 함수이다.
+
+```jsx
+function makeBurger(type, size, num) {
+  console.log("매개변수 값은?", type);
+  console.log("빵두기");
+  console.log("상추두기");
+  if (num < 1) {
+    return "버거 개수가 0개 입니다.";
+  }
+  if (type == "불고기") {
+    console.log("고기패티두기");
+  } else if (type == "새우") {
+    console.log("새우패티두기");
+  }
+
+  console.log("뚜껑덥기");
+  console.log(type, "버거", size, "사이즈", num, "개 준비완료");
+
+  return "완료되었습니다";
+}
+
+function serveCoke() {
+  console.log("콜라통 선택");
+  console.log("얼음담기");
+  console.log("콜라담기");
+}
+
+function serveFrenchFries() {
+  console.log("감튀박스선택");
+  console.log("감튀 담기");
+}
+
+let result = makeBurger("불고기", "M", "0");
+console.log("버거 프로세스 결과", result);
+serveCoke();
+serveFrenchFries();
+
+function makeSet() {
+  makeBurger("새우", "M", 2);
+  serveCoke();
+  serveFrenchFries();
+}
+
+makeSet();
+```
+
+### **함수 생김새**
+
+```jsx
+function 함수이름(매개변수) {
+  내용입력;
+  return 반환;
+}
+```
+
+- **매개변수**: 함수에 전달해야되는 내용이 있을때, 이 함수가 실행될때 알아야되는 내용이 있을 때 매개변수를 통해 전달한다
+- **return**: 반환값, 함수 완료 후, 반환되야하는 값이 있을 때 사용한다
+
+### 예시
+
+```jsx
+function greet(firstName, lastName) {
+  console.log("hello", firstName, lastName, "Welcome to our website");
+}
+greet("Noona", "Kim");
+```
+
+**함수는 반드시 불러야 실행된다**
+
+## **함수의 또다른 이름들**
+
+- method: 메서드, 함수와 같은 뜻이다
+- 익명함수 Anonymous function : 이름이 없는 함수. **function (y) {console.log(y)}**. 함수를 변수에 넣어줄때, 일시적으로 쓰이고 말 함수들에 대해선 익명함수로 만들어준다
+- 람다식 함수: => 를 사용하여 함수를 정의하는 경우이다.(이건 곧 배울 예정이다.)
+
+```jsx
+let arrowFunc = (y) => {
+  console.log(y);
+};
+```
+
+- **콜백함수** : 다른 함수의 매개변수로 전달된 함수.
+
+### 예시
+
+```jsx
+button.addEventListenr("click", setCount);
+// 버튼에 클릭 이벤트가 발생했을때 setCount함수를 콜을 한다
+function setCount() {
+  count++;
+}
+```
+
+콜백은 말그대로 부른다는 뜻이다.
+
+주로 어떤 함수에 매개변수로 들어가 어떤 특정한 조건이 되었을때만 호출이 된다
+
+(클릭이벤트나 타이머이벤트 등등)
+
+[함수 TEST](https://www.notion.so/TEST-daac80d5099e4a2292c59e4789e098cf)
+
 ## 함수란?
 
 특정한 일을 수행하는 코드의 집합
@@ -14,27 +120,29 @@
 
 어떤 일들을 수행하는지는 외부에서는 전혀 알 수 없다.
 
-사용자에게 필요한 데이터를 입력 받아 주어진 일들을 수행하여 출력  return하게 된다.
+사용자에게 필요한 데이터를 입력 받아 주어진 일들을 수행하여 출력 return하게 된다.
 <br>
 <br>
 
 ### 함수의 형태
 
 ```jsx
-function add(a, b) { return a + b; };
+function add(a, b) {
+  return a + b;
+}
 ```
 
-function이라는 함수 정의 키워드를 쓴 후 우리가 원하는 함수 이름을 작성 후에 외부에서 전달 받을 수 있는 매개변수, 인자를 외부로부터 받아와서 특정한 일을 수행한 후  return이라는 키워드를 통해서 우리가 처리한 일을 결과값을 반환한다.
+function이라는 함수 정의 키워드를 쓴 후 우리가 원하는 함수 이름을 작성 후에 외부에서 전달 받을 수 있는 매개변수, 인자를 외부로부터 받아와서 특정한 일을 수행한 후 return이라는 키워드를 통해서 우리가 처리한 일을 결과값을 반환한다.
 
 → 이것을 함수를 정의한다고 한다.
 
 ```jsx
-add(1, 2)
+add(1, 2);
 ```
 
 이렇게 정의한 함수를 외부에서 함수 이름을 통해서 필요한 데이터를 전달하면서 호출할 수 있다.
 
-add에 1과 2를  콤마를 통해서 매개변수 또는 인자로 전달이 되어 주어진 일을 수행한 후 return하게 된다.
+add에 1과 2를 콤마를 통해서 매개변수 또는 인자로 전달이 되어 주어진 일을 수행한 후 return하게 된다.
 
 ### 즉, 프로그램 상에서 중복, 반복되는 일이 있다면 함수 단위로 작은 단위의 일들을 묶는 것이 중요하다.
 
@@ -56,8 +164,8 @@ add에 1과 2를  콤마를 통해서 매개변수 또는 인자로 전달이 �
 
 ```jsx
 function sum(a, b) {
-    console.log('function');
-    return a + b;
+  console.log("function");
+  return a + b;
 }
 
 const result = sum(1, 2);
@@ -69,8 +177,8 @@ console.log(result);
 성과 이름을 각각 따로 받아 하나의 풀네임을 만들고 싶다.
 
 ```jsx
-let lastName = '김';
-let firstName = '지수';
+let lastName = "김";
+let firstName = "지수";
 let fullName = `${lastName} ${firstName}`;
 console.log(fullName);
 ```
@@ -82,8 +190,8 @@ function makeFullName(lastName, firstName) {
   return `${lastName} ${firstName}`;
 }
 
-const user1 = makeFullName('김', '빡빡');
-const user2 = makeFullName('김', '인성');
+const user1 = makeFullName("김", "빡빡");
+const user2 = makeFullName("김", "인성");
 console.log(user1);
 console.log(user2);
 ```
@@ -92,12 +200,12 @@ console.log(user2);
 
 ```jsx
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 const sum = add;
-console.log(sum(1,2)); //3
-console.log(add(1,2)); //3
+console.log(sum(1, 2)); //3
+console.log(add(1, 2)); //3
 ```
 
 → 이렇게 sum에 add라는 함수를 할당하게 되면 메모리 heap 어딘가에 있는 add의 메모리 주소가 sum에게 할당이 된다
@@ -106,10 +214,10 @@ console.log(add(1,2)); //3
 
 ```jsx
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
-const result = add(1,2);
+const result = add(1, 2);
 console.log(result); //3
 ```
 
@@ -117,11 +225,11 @@ console.log(result); //3
 
 ```jsx
 function add(a, b) {
-    //return a + b;
-	return undefined;
+  //return a + b;
+  return undefined;
 }
 
-const result = add(1,2);
+const result = add(1, 2);
 console.log(result); //undefined
 ```
 
@@ -135,10 +243,10 @@ console.log(result); //undefined
 
 ```jsx
 function print(text) {
-    console.log(text);
+  console.log(text);
 }
 
-print('text')
+print("text");
 ```
 
 그냥 단순히 무언가를 프린트만 해도 되는 함수라면 return을 생략할 수 있다.
@@ -151,10 +259,10 @@ print('text')
 
 ```jsx
 function print(num) {
-    if(num < 0) {
-        return;
-    }
-    console.log(num);
+  if (num < 0) {
+    return;
+  }
+  console.log(num);
 }
 
 print(12);
@@ -173,12 +281,12 @@ print(-12);
 
 ```jsx
 function add(a, b) {
-    console.log(a); //1
-    console.log(b); //2
-    return a + b;
+  console.log(a); //1
+  console.log(b); //2
+  return a + b;
 }
 
-add(1, 2, 3)
+add(1, 2, 3);
 ```
 
 만약 위와 같이 추가로 인자가 할당이 되어도 무시됨을 확인할 수 있다.
@@ -187,13 +295,13 @@ add(1, 2, 3)
 
 ```jsx
 function add(a, b) {
-    console.log(a);
-    console.log(b);
-    console.log(arguments); // [Arguments] { '0': 1, '1': 2, '2': 3 }
-    return a + b;
+  console.log(a);
+  console.log(b);
+  console.log(arguments); // [Arguments] { '0': 1, '1': 2, '2': 3 }
+  return a + b;
 }
 
-add(1, 2, 3)
+add(1, 2, 3);
 ```
 
 → 인덱스가 0부터 시작하여 첫 번째 들어온 인자 0번째 인자는 1, 1번째 인자는 2, 2번째 인자는 3이 들어온 것을 확인할 수 있다.
@@ -218,16 +326,16 @@ a = 1, b = 2 와 같은 형태로 지정을 할 수 있다
 
 ```jsx
 function add(a = 1, b = 1) {
-    console.log(a);
-    console.log(b);
-    console.log(arguments);
-    return a + b;
+  console.log(a);
+  console.log(b);
+  console.log(arguments);
+  return a + b;
 }
 
-add(2, 3)
+add(2, 3);
 ```
 
-→ 이와 같이 기본값을 지정하였을 경우에는 자동으로 각각 기본값이 전달이 된다. 
+→ 이와 같이 기본값을 지정하였을 경우에는 자동으로 각각 기본값이 전달이 된다.
 
 그러나 누군가가 값을 다시 전달한다면 기본값은 무시되고 그 값으로 업데이트 된다.
 
@@ -237,22 +345,22 @@ add(2, 3)
 
 ```jsx
 function sum(...numbers) {
-    console.log(numbers);
+  console.log(numbers);
 }
 
-sum(1, 2, 3, 4, 5, 6, 7, 8,)
+sum(1, 2, 3, 4, 5, 6, 7, 8);
 ```
 
 → 이렇게 몇 개의 인자를 받아올지 모를 때 … rest parameters를 이용하면 배열로 받아올 수 있다.
 
 ```jsx
 function sum(a, b, ...numbers) {
-    console.log(a); //1
-    console.log(b); //2
-    console.log(numbers); //3, 4, 5, 6, 7, 8
+  console.log(a); //1
+  console.log(b); //2
+  console.log(numbers); //3, 4, 5, 6, 7, 8
 }
 
-sum(1, 2, 3, 4, 5, 6, 7, 8,)
+sum(1, 2, 3, 4, 5, 6, 7, 8);
 ```
 
 → rest parameters 앞에 인자를 붙이면 a, b에는 0번째, 1번째 값이 할당이 되고 그 외의 값들이 numbers에 할당이 되는 것을 확인할 수 있다.
@@ -268,17 +376,17 @@ function name() {}
 - **함수 표현식**
 
 ```jsx
-const name = function () {}
+const name = function () {};
 ```
 
 → 이게 왜 가능할까? 함수도 객체이기 때문에 다른 변수에 값으로 할당이 가능하기 때문!
 
 ```jsx
-let add = function(a, b) {
-    return a + b;
-}
+let add = function (a, b) {
+  return a + b;
+};
 
-console.log(add(1, 2)) ;
+console.log(add(1, 2));
 ```
 
 → function의 주소가 add에 할당이 된다.
@@ -289,10 +397,10 @@ console.log(add(1, 2)) ;
 
 ```jsx
 let add = function sum(a, b) {
-    return a + b;
-}
+  return a + b;
+};
 
-console.log(sum(1, 2)) ; //sum is not defined
+console.log(sum(1, 2)); //sum is not defined
 ```
 
 → sum은 정의되지 않았다는 오류창이 뜨는 것을 확인할 수 있다.
@@ -305,10 +413,10 @@ const name = (인자) => {실행하고자 하는 코드}
 
 ```jsx
 add = (a, b) => {
-    return a + b;
-}
+  return a + b;
+};
 
-console.log(add(1, 2)) ;
+console.log(add(1, 2));
 ```
 
 → 위의 코드를 화살표 함수로 변환하면 이와 같다
@@ -339,7 +447,7 @@ const object = new Function();
 
 ```jsx
 function run() {
-  console.log('d');
+  console.log("d");
 }
 ```
 
@@ -347,8 +455,8 @@ function run() {
 
 ```jsx
 (function run() {
-  console.log('d');
-})()
+  console.log("d");
+})();
 ```
 
 → 하지만 이와 같이 괄호로 묶으면 함수가 바로 실행이 된다
@@ -389,7 +497,7 @@ function calculator(a, b, action) {
 → result를 출력하자
   return result;
 → result를 반환하면서 함수를 종료한다
-} 
+}
 
 calculator(1, 2, add); //3
 → 숫자 1, 2를 전달하고 호출할 callback함수인 add를 전달한다
@@ -417,15 +525,15 @@ function calculator(a, b, action) {
   let result = action(a, b);
   console.log(result);
   return result;
-} 
+}
 
-calculator(-1,- 2, add);
+calculator(-1, -2, add);
 calculator(-1, -2, multiply);
 ```
 
 → 이와 같이 a와 b가 0보다 작을 경우에는 함수가 종료된다는 조건을 추가할 경우에는 action 콜백함수가 실행되지 않는다.
 
-[함수 퀴즈](https://www.notion.so/a7a3f2fde22f4701ad1e94f1107f3ac8) 
+[함수 퀴즈](https://www.notion.so/a7a3f2fde22f4701ad1e94f1107f3ac8)
 
 ## 불변성 Immutability
 
@@ -433,7 +541,7 @@ calculator(-1, -2, multiply);
 
 상태가 변경되지 않도록 불변성을 유지하도록 코딩하는 것이 좋다
 
-mutable -  변경할 수 있는(changeable)
+mutable - 변경할 수 있는(changeable)
 
 immutable - 변경할 수 없는
 
@@ -473,16 +581,16 @@ console.log(value);
 
 ```jsx
 function displayObj(obj) {
-  obj.name = 'bob'// ❌❌❌❌❌ 외부로부터 주어진 인자(오브젝트)를 내부에서 변경하지 말아야 함
+  obj.name = "bob"; // ❌❌❌❌❌ 외부로부터 주어진 인자(오브젝트)를 내부에서 변경하지 말아야 함
   console.log(obj);
 }
 
-const ellie = {name : 'Ellie'};
+const ellie = { name: "Ellie" };
 displayObj(ellie);
 console.log(ellie);
 ```
 
-→ elie라는 오브젝트를 함수 외부에서 만들어냄 함수에 전달할 때는 오브젝트가 가리키고 있는 메모리 주소, 참조값이 전달이 된다. 
+→ elie라는 오브젝트를 함수 외부에서 만들어냄 함수에 전달할 때는 오브젝트가 가리키고 있는 메모리 주소, 참조값이 전달이 된다.
 
 obj.name으로 새롭게 값을 변경하는 순간 기존 elie의 주소에 이름이 변경이 일어난다
 
@@ -493,8 +601,9 @@ obj.name으로 새롭게 값을 변경하는 순간 기존 elie의 주소에 이
 우선 함수 이름부터 변경한다는 의미를 가진 이름으로 선언을 해야 한다
 
 ```jsx
-function changeName(obj) { //이름부터 변경한다는 느낌을 주도록!
-  return {...obj, name: 'bob'}; // 반환할 때는 새로운 오브젝트를 만들기
+function changeName(obj) {
+  //이름부터 변경한다는 느낌을 주도록!
+  return { ...obj, name: "bob" }; // 반환할 때는 새로운 오브젝트를 만들기
 }
 ```
 
