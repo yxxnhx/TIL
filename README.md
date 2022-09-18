@@ -19,7 +19,7 @@
 
 ## SASS & SCSS
 
-- [기초]
+- [기초](/SASS%26SCSS/basic.md)
 
 ## JAVASCRIPT
 
