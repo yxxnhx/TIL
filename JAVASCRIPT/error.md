@@ -36,8 +36,7 @@ function processFile(path) {
 const result = processFile("경로");
 console.log(result);
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2344fe6-f36f-491a-b10e-75098a1d8c1e/Untitled.png)
+<img width="564" alt="스크린샷 2022-09-25 오후 9 43 39" src="https://user-images.githubusercontent.com/50559373/192153597-52df83e3-8429-4e21-9dac-b9789ad8218a.png">
 
 → readFile의 return은 죽고 app crashed 된 것을 확인할 수 있다
 
@@ -68,8 +67,7 @@ function processFile(path) {
 const result = processFile("경로");
 console.log(result);
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/506a8dab-8d76-48ff-93b2-e390e843ddc6/Untitled.png)
+<img width="561" alt="스크린샷 2022-09-25 오후 9 50 30" src="https://user-images.githubusercontent.com/50559373/192153606-8522eea4-461f-4f6d-9917-b51867573313.png">
 
 → 위와 같이 try catch문을 이용하면 app crashed가 되지 않고 에러의 이름, 메세지, 위치를 찾아내고 기본 내용을 출력해내어 조금 더 우아하게 에러를 잡아낼 수 있다
 
