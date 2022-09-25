@@ -560,6 +560,8 @@ if (obj1 && obj2) {
 
 obj1, obj2 모두 안에 값이 있으므로 true로 변환이 되고 둘 다 true이니 콘솔에 true 값이 반환된 것을 확인할 수 있다
 
+<br />
+
 ```jsx
 if (obj1 || obj2) {
   console.log("둘 다 true");
@@ -567,6 +569,8 @@ if (obj1 || obj2) {
 ```
 
 → or 연산자를 이용하면 앞의 것만 true여도 true를 반환하기 때문에 true 값이 출력된 것을 확인할 수 있다. 만약 앞이 false라면 뒤의 조건까지 확인해보고 true이면 true로 출력한다.
+
+<br />
 
 ### 그렇다면 조건문 밖에서 사용을 해보자
 
@@ -579,12 +583,16 @@ console.log(result); // { name: '🐱', owner: 'yxxn' }
 
 조건문 밖에서 사용할 시에는 obj1가 값이 있으니 true이니 뒤의 obj2를 평가되지 않고 단축하여 그 값을 result에 할당하는 것이다.
 
+<br />
+
 ```jsx
 let result2 = obj1 || obj2;
 console.log(result2);
 ```
 
 → or 연산자를 사용해도 동일하다. obj1이 true니까 뒤는 확인하지 않아도 되니 바로 obj1을 할당해준다
+
+<br />
 
 ### 활용 예
 
@@ -617,6 +625,8 @@ console.log(obj2); //{ name: '🐱', owner: '바뀐 주인' }
 
 → obj1에는 주인이 없기 때문에 changeOwner의 조건문이 false이기 때문에 기존 배열 그대로 주인 없이 나타나고 obj2는 주인이 있기 때문에 조건문이 true로 바뀐 주인이라는 값이 출력되는 것을 확인할 수 있다.
 
+<br />
+
 - 조건이 truthy일 때, && 무언가를 해야할 경우
 - 조건이 falshy일 때, || 무언가를 해야 할 경우
 
@@ -629,6 +639,8 @@ console.log(obj2); //{ name: '🐱', owner: '바뀐 주인' }
 
 → obj1에는 주인이 없기 때문에 makeOwner의 조건이 true이기 때문에 새로운 주인이 뜨고 obj2는 이미 주인이 있기 때문에 실행되지 않고 더이상 바뀌지 않는다
 
+<br />
+
 **만약 연산자를 이용하지 않는다면 if문을 활용하여 조금 더 길게 작성해야 한다**
 
 ```jsx
@@ -636,6 +648,8 @@ if (obj1.owner) {
   changeOwner(obj1);
 }
 ```
+
+<br />
 
 ### null 또는 undefined인 경우를 확인할 때
 
@@ -647,6 +661,8 @@ console.log(price); //1
 
 → 1이 출력되는 것을 확인할 수 있다.
 
+<br />
+
 **그렇다면 item에 아무것도 없다면 어떻게 될까?**
 
 ```jsx
@@ -654,10 +670,12 @@ let item;
 const price = item.price;
 console.log(price);
 ```
+<img width="551" alt="스크린샷 2022-09-25 오후 7 00 42" src="https://user-images.githubusercontent.com/50559373/192153475-14472f4d-ec9c-4468-99e6-a7a919a6c199.png">
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8923c68-a543-494e-ad0f-4eb4379bd414/Untitled.png)
 
 → price의 값을 못 읽겠다는 에러가 뜨는 것을 확인할 수 있다.
+
+<br />
 
 **이것을 단축평가를 하게될 경우에는 어떻게 될까?**
 
@@ -669,6 +687,8 @@ console.log(price); //false
 
 → item이 비어있으므로 false 값이 출력되는 것을 확인할 수 있다
 
+<br />
+
 **만약 아이템이 있다면 어떻게 될까?**
 
 ```jsx
@@ -678,6 +698,8 @@ console.log(price); //1
 ```
 
 → item이 true니까 item의 price 값이 price에게 할당되어 값이 출력되는 것을 확인할 수 있다.
+
+<br />
 
 ### 기본값을 설정하기
 
@@ -690,6 +712,8 @@ print(); //undefined
 
 → 이렇게 message에 아무것도 할당하거나 선언을 하지 않았으므로 undefined가 출력되는 것을 확인할 수 있다.
 
+<br />
+
 **그렇다면 다음과 같이 기본값을 설정해보자**
 
 ```jsx
@@ -701,6 +725,8 @@ print(); //hello
 ```
 
 → message의 값이 false, 즉 없다면 hello를 할당하는 text를 선언을 하니 hello가 출력되는 것을 확인할 수 있다.
+
+<br />
 
 **그렇다면 defalut parameter와 똑같지 않을까?**
 
@@ -717,6 +743,8 @@ print(undefined); //h1
 
 → 둘 다 동일하게 hi가 출력되는 것을 확인할 수 있다.
 
+<br />
+
 **그러나 null이나 0과 같은 falshy를 전달할 때에는 어떻게 될까?**
 
 ```jsx
@@ -725,6 +753,8 @@ print(0); //0
 ```
 
 → null과 0은 **defalut parameter**로 설정되지 않아서 그냥 전달한 값이 전달되는 것을 확인할 수 있다.
+
+<br />
 
 ### **하지만 or 연산자를 이용하면 조금 다르다**
 
