@@ -37,7 +37,8 @@ count = -10;
 console.log(count);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f9ef6fea-5479-4529-8df7-a72a4767e0ee/Untitled.png)
+
+<img width="407" alt="스크린샷 2022-09-26 오전 12 41 29" src="https://user-images.githubusercontent.com/50559373/192153646-353dc6e9-85d6-472b-8f0f-380c2a84b82c.png">
 
 → 이렇게 counter에서 선언하고 생성한 count와 increase()를 main에서도 재선언을 하고 값을 재할당을 할 수 있다.
 
@@ -61,8 +62,7 @@ console.log(count);
   <body></body>
 </html>
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b21af18-c800-4d89-a1b2-d3313d33700c/Untitled.png)
+<img width="410" alt="스크린샷 2022-09-26 오전 12 43 35" src="https://user-images.githubusercontent.com/50559373/192153659-5dbca532-b7d1-4ac1-a0bd-f9596f370373.png">
 
 이렇게 각각의 스크립트들의 타입을 모듈로 설정을 해두면 count에서 선언한 increase 함수와 count를 사용할 수 없어 이전에 main에서 재할당하고 선언하였던 부분에서 에러가 나는 것을 볼 수 있다.
 
@@ -89,8 +89,7 @@ import increase from "./counter.js";
 
 increase();
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65ba08a2-db50-413d-b88e-600f187cce29/Untitled.png)
+<img width="409" alt="스크린샷 2022-09-26 오전 12 48 02" src="https://user-images.githubusercontent.com/50559373/192153677-95472f3f-5cdc-4d2c-af5e-221b353a8ae5.png">
 
 → 이렇게 main에서 사용하고 싶을 때는 import 원하는 이름 from 위치로 경로를 설정해주면 오류 없이 사용할 수 있는 것을 확인할 수 있다.
 
@@ -154,8 +153,7 @@ increase();
 const count = getCount();
 console.log(count);
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5908ff45-2b11-43f8-8834-6cc2e51e24ef/Untitled.png)
+<img width="406" alt="스크린샷 2022-09-26 오전 12 53 54" src="https://user-images.githubusercontent.com/50559373/192153703-6499eef7-2068-496e-aae5-898dcb82527b.png">
 
 → 여전히 main에서 count의 let으로 선언한 count 기본값은 접근을 할 수 없지만 몇 번 count 되었는지에 관해서는 접근하여 확인할 수 있다
 
@@ -174,7 +172,7 @@ const count = counter.getCount();
 console.log(count);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5908ff45-2b11-43f8-8834-6cc2e51e24ef/Untitled.png)
+<img width="406" alt="스크린샷 2022-09-26 오전 12 53 54" src="https://user-images.githubusercontent.com/50559373/192153703-6499eef7-2068-496e-aae5-898dcb82527b.png">
 
 → counter.js에서 counter이라는 이름으로 전체를 가져올 것이라고 한 후 모든 함수나 변수에 앞에 지정한 이름을 붙여주면 동일하게 작동하는 것을 확인할 수 있다.**(그룹화)**
 
