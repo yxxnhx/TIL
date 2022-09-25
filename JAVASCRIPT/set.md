@@ -27,6 +27,8 @@ console.log(set); //Set(3) { 1, 2, 3 }
 <br />
 
 **set에는 다양한 method들이 있다**
+<br />
+
 <img width="223" alt="스크린샷 2022-09-25 오후 4 51 32" src="https://user-images.githubusercontent.com/50559373/192134358-a0cc74c3-5b53-4b44-a196-f5d2ab868c2e.png">
 
 <br />
