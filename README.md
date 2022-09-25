@@ -34,6 +34,8 @@
 - [일급객체](/JAVASCRIPT/hof.md)
 - [이벤트](/JAVASCRIPT/event.md)
 - [Iterator & Generator](/JAVASCRIPT/iterator.md)
+- [Spread](/JAVASCRIPT/spread.md)
+- [구조분해할당](/JAVASCRIPT/destructor.md)
 
 ## REACT
 
