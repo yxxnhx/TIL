@@ -38,6 +38,11 @@
 - [구조분해할당](/JAVASCRIPT/destructor.md)
 - [Set](/JAVASCRIPT/set.md)
 - [Map](/JAVASCRIPT/map.md)
+- [Symbol](/JAVASCRIPT/symbol.md)
+- [옵셔널 체이닝 연산자](./JAVASCRIPT/optional.md)
+- [Error](./JAVASCRIPT/error.md)
+- [모듈화](./JAVASCRIPT/module.md)
+- [주석](./JAVASCRIPT/comments.md)
 
 ## REACT
 

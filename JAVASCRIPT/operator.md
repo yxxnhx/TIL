@@ -21,6 +21,7 @@
 선언문, 할당문, 조건문, 반복문 등이 있다.
 
 ### 여기서 문 중에서 값으로 평가될 수 있는 문을 표현식 expressions라고 한다
+
 </br>
 </br>
 예를 들면
@@ -46,6 +47,7 @@ let b; //선언문
 → 선언문은 값이 없고 선언만 하였기 때문에 값으로 평가될 수 있는 것이 아니기 때문에 선언문이다.
 </br>
 </br>
+
 ```jsx
 b = 2; //할당문, 할당 표현식인 문
 ```
@@ -55,7 +57,7 @@ b = 2; //할당문, 할당 표현식인 문
 **좀 더 자세히 설명해보자면 아래의 예를 보자**
 
 ```jsx
-let b; //선언문 
+let b; //선언문
 b = 2; //표현식, 할당문
 
 let a = let b;
@@ -65,28 +67,29 @@ let a = let b;
 </br>
 </br>
 </br>
+
 ## 산술 연산자 Arithmetic Operators
 
 - **+ 더하기**
 
 ```jsx
-console.log(5+2); //7
+console.log(5 + 2); //7
 ```
 
 ### + 연산자 주의점
 
-+는 문자열을 연결할 때에도 사용을 했었는데 문자와 숫자를 더하게 되는 일이 생길 수 있으므로 주의해야 한다. 
++는 문자열을 연결할 때에도 사용을 했었는데 문자와 숫자를 더하게 되는 일이 생길 수 있으므로 주의해야 한다.
 </br>
 </br>
 **아래의 예를 보자**
 
 ```jsx
-let text = '두개의' + '문자를';
+let text = "두개의" + "문자를";
 console.log(text); // 두개의 문자를
 ```
 
 ```jsx
-text = '1' +1
+text = "1" + 1;
 console.log(text); //11(string)
 ```
 
@@ -95,41 +98,46 @@ console.log(text); //11(string)
 **그러므로 내가 지금 더하는 것이 숫자와 숫자인지, 문자와 문자인지, 숫자와 문자열인지 생각하면서 코딩을 해야한다.**
 </br>
 </br>
+
 - **- 빼기**
 
 ```jsx
-console.log(5-2); //3
+console.log(5 - 2); //3
 ```
+
 </br>
 </br>
 - *** 곱하기**
 
 ```jsx
-console.log(5*2); //10
+console.log(5 * 2); //10
 ```
+
 </br>
 </br>
 
 - **/ 나누기**
 
 ```jsx
-console.log(5/2); //2.5
+console.log(5 / 2); //2.5
 ```
+
 </br>
 </br>
 - **% 나머지값**
 
 ```jsx
-console.log(5%2); //1
+console.log(5 % 2); //1
 ```
 
-→ 5를 2로 나눈 다음 나머지 값 
+→ 5를 2로 나눈 다음 나머지 값
 </br>
 </br>
-- **** 지수(거듭제곱)**
+
+- \***\* 지수(거듭제곱)**
 
 ```jsx
-console.log(5**2); //25
+console.log(5 ** 2); //25
 ```
 
 → es7에 추가된 문법이다.
@@ -142,6 +150,7 @@ console.log(Math.pow(5, 2));
 </br>
 </br>
 </br>
+
 ## 단항 연산자 Unary Operators
 
 - **+(양)**
@@ -149,17 +158,19 @@ console.log(Math.pow(5, 2));
 
 ```jsx
 let a = 5;
-a = -a // -1 *5
+a = -a; // -1 *5
 console.log(a); //-5
 ```
 
-a에게 -a를 반환하라고 하는 것은 앞에서 a는 5라고 선언하였기 때문에 -1 * 5가 되는 것이다.
+a에게 -a를 반환하라고 하는 것은 앞에서 a는 5라고 선언하였기 때문에 -1 \* 5가 되는 것이다.
 </br>
 </br>
+
 ```jsx
 a = -a;
 console.log(-a); //5
 ```
+
 </br>
 </br>
 그렇다면 현재 a는 -5인데 -a는 -(-5)가 되므로 값은 5가 찍히는 것을 확인할 수 있다.
@@ -168,6 +179,7 @@ console.log(-a); //5
 a = +a;
 console.log(a); //5
 ```
+
 </br>
 </br>
 여기에서는 a가 5인데 +(5)이므로 값은 5가 찍히는 것을 확인할 수 있다.
@@ -201,7 +213,7 @@ console.log(!!boolean); //true
 ```jsx
 console.log(+false); //0
 console.log(+null); //0
-console.log(+''); //0
+console.log(+""); //0
 console.log(+true); //1
 ```
 
@@ -212,7 +224,7 @@ console.log(+true); //1
 **그렇다면 문자열을 숫자로 바꾸면 어떻게 될까?**
 
 ```jsx
-console.log(+'text'); //NaN
+console.log(+"text"); //NaN
 ```
 
 → 숫자열이 아니기 때문에 not a number이 뜬다
@@ -244,7 +256,7 @@ console.log(!!1); //true
 
 boolean이 아닌 데이터를 boolean으로 출력해내고 싶다면
 
-1이 가지고 있는 boolean 값을 ! 한번 부정하면 false가 되고 한번 더 부정을 하여 원래의 값인  true를 출력할 수 있도록 만든 것이다.
+1이 가지고 있는 boolean 값을 ! 한번 부정하면 false가 되고 한번 더 부정을 하여 원래의 값인 true를 출력할 수 있도록 만든 것이다.
 </br>
 </br>
 </br>
@@ -260,6 +272,7 @@ console.log(a); //3
 위와 같이 변수에 값을 할당하는 것 “=” 이 할당 연산자이다
 </br>
 </br>
+
 ### 그렇다면 이 식은 어떻게 될까?
 
 ```jsx
@@ -272,10 +285,10 @@ a += 2라는 것은 a라는 변수에게 a + 2를 하여 값을 할당하라는 
 즉, 위에서 a는 3이라고 값을 할당하였기 때문에 3 + 2, 5가 되는 것이다.
 
 ```jsx
-a -= 2
+a -= 2;
 console.log(a); //3
 
-a *= 2
+a *= 2;
 console.log(a); //6
 
 a /= 2;
@@ -301,7 +314,7 @@ console.log(a); //1
 let a = 0;
 console.log(a);
 
-a = a +1;
+a = a + 1;
 console.log(a); //1
 ```
 
@@ -324,6 +337,7 @@ console.log(a); //1
 a--; //a = a-1;
 console.log(a); //0
 ```
+
 </br>
 </br>
 ### 주의사항
@@ -371,23 +385,23 @@ console.log(a); //1
 </br>
 </br>
 
-## 비교 연산자 Relational  Operators
+## 비교 연산자 Relational Operators
 
 대소 관계 비교 연산자
 
 - > 크다
 - < 작다
-- >= 크거나 같다
+- > = 크거나 같다
 - <= 작거나 같다
 
 ```jsx
-console.log(2>3); //false
-console.log(2<3); //true
-console.log(3<2); //false
-console.log(3<=2); //false
-console.log(3>=3); //true
-console.log(3>=3); //true
-console.log(3>=2); //true
+console.log(2 > 3); //false
+console.log(2 < 3); //true
+console.log(3 < 2); //false
+console.log(3 <= 2); //false
+console.log(3 >= 3); //true
+console.log(3 >= 3); //true
+console.log(3 >= 2); //true
 ```
 
 → 이런식으로 특정한 값과 값을 비교할 수 있는 것이 비교 연산자이다
@@ -415,12 +429,12 @@ console.log(result); //14
 console.log(a); //3
 ```
 
-→ 위와 동일하게 b * 4 = 12에 a를 더해야 하는데 먼저 a++이므로 12에 a, 즉 2를 더한 값을 result에 반환 후에 ++ 1 이 증감하므로 14가 출력이 된다.
+→ 위와 동일하게 b \* 4 = 12에 a를 더해야 하는데 먼저 a++이므로 12에 a, 즉 2를 더한 값을 result에 반환 후에 ++ 1 이 증감하므로 14가 출력이 된다.
 
-만약 a와 b를 더한 후에 4를 곱하고 싶다면 
+만약 a와 b를 더한 후에 4를 곱하고 싶다면
 
 ```jsx
-(a+b)*4
+(a + b) * 4;
 ```
 
 와 같은 형태로 괄호로 감싸주면 된다
@@ -435,7 +449,7 @@ console.log(a); //3
 ```jsx
 console.log(2 == 2); //true
 console.log(2 == 3); //false
-console.log(2 == '2'); //true
+console.log(2 == "2"); //true
 ```
 
 → number 2와 string 2는 타입은 비록 다르지만 숫자와 문자열을 비교할 때 문자열 안에 있는 숫자가 자동으로 숫자열로 바꾸어 비교를 해주기 때문에 값은 true이다
@@ -450,7 +464,7 @@ console.log(2 != 2); //true
 - === : 값과 타입이 둘다 같음
 
 ```jsx
-console.log(2 === '2'); //false
+console.log(2 === "2"); //false
 ```
 
 → 값은 동일하지만 type이 number과 string으로 다르기 때문에 false이다.
@@ -458,8 +472,8 @@ console.log(2 === '2'); //false
 ⭐️ **개발을 할 때에는 값과 type을 비교하는 것이 좋으므로 === 를 쓰는 것이 제일 좋다**
 
 - !== : 값과 타입이 다름
-</br>
-</br>
+  </br>
+  </br>
 
 ### 그렇다면 1과 true, 0과 false는 같을까?
 
@@ -483,11 +497,11 @@ console.log(false === 0); // false
 
 ```jsx
 const obj1 = {
-    name: 'js',
-}
+  name: "js",
+};
 const obj2 = {
-    name: 'js',
-}
+  name: "js",
+};
 
 console.log(obj1 == obj2); //false
 console.log(obj1 === obj2); //false
@@ -521,3 +535,199 @@ console.log(obj3 === obj2); //true
 ```
 
 → obj3이라는 객체에 obj2의 메모리 주소를 할당하였으므로 주소 값도 동일, 타입도 객체로 동일하므로 둘 다 true이다
+
+<br />
+
+# 유용한 연산자들
+
+## 논리연산자 Logical Operator
+
+- && 그리고
+- || 또는
+
+→ 이러한 논리연산자는 **단축평가(short-circuit evaluation)**가 된다.
+
+```jsx
+const obj1 = { name: "🐶" };
+const obj2 = { name: "🐱", owner: "yxxn" };
+
+if (obj1 && obj2) {
+  console.log("둘 다 true"); //true
+}
+```
+
+→ 위와 같이 조건문 안에 && 연산자를 이용하게 되면 boolean 값으로 변환되면서 평가가 된다
+
+obj1, obj2 모두 안에 값이 있으므로 true로 변환이 되고 둘 다 true이니 콘솔에 true 값이 반환된 것을 확인할 수 있다
+
+```jsx
+if (obj1 || obj2) {
+  console.log("둘 다 true");
+}
+```
+
+→ or 연산자를 이용하면 앞의 것만 true여도 true를 반환하기 때문에 true 값이 출력된 것을 확인할 수 있다. 만약 앞이 false라면 뒤의 조건까지 확인해보고 true이면 true로 출력한다.
+
+### 그렇다면 조건문 밖에서 사용을 해보자
+
+```jsx
+let result = obj1 && obj2;
+console.log(result); // { name: '🐱', owner: 'yxxn' }
+```
+
+→ 조건문 안에서 && 연산자를 사용했을 때에는 boolean 값으로 변환이 되어 true가 출력이 되었다면
+
+조건문 밖에서 사용할 시에는 obj1가 값이 있으니 true이니 뒤의 obj2를 평가되지 않고 단축하여 그 값을 result에 할당하는 것이다.
+
+```jsx
+let result2 = obj1 || obj2;
+console.log(result2);
+```
+
+→ or 연산자를 사용해도 동일하다. obj1이 true니까 뒤는 확인하지 않아도 되니 바로 obj1을 할당해준다
+
+### 활용 예
+
+- && 조건이 truthy일 때, 무언가를 해야할 경우
+- || 조건이 falshy일 때, 무언가를 해야 할 경우
+
+```jsx
+const obj1 = { name: "🐶" };
+const obj2 = { name: "🐱", owner: "yxxn" };
+
+function changeOwner(animal) {
+  if (!animal.owner) {
+    throw new Error("주인이 없어");
+  }
+  animal.owner = "바뀐 주인";
+}
+
+function makeOwner(animal) {
+  if (animal.owner) {
+    throw new Error("주인이 있어");
+  }
+  animal.owner = "새로운 주인";
+}
+
+obj1.owner && changeOwner(obj1);
+obj2.owner && changeOwner(obj2);
+console.log(obj1); //{ name: '🐶' }
+console.log(obj2); //{ name: '🐱', owner: '바뀐 주인' }
+```
+
+→ obj1에는 주인이 없기 때문에 changeOwner의 조건문이 false이기 때문에 기존 배열 그대로 주인 없이 나타나고 obj2는 주인이 있기 때문에 조건문이 true로 바뀐 주인이라는 값이 출력되는 것을 확인할 수 있다.
+
+- 조건이 truthy일 때, && 무언가를 해야할 경우
+- 조건이 falshy일 때, || 무언가를 해야 할 경우
+
+```jsx
+obj1.owner || makeOwner(obj1);
+obj2.owner || makeOwner(obj2);
+console.log(obj1); //{ name: '🐶', owner: '새로운 주인' }
+console.log(obj2); //{ name: '🐱', owner: '바뀐 주인' }
+```
+
+→ obj1에는 주인이 없기 때문에 makeOwner의 조건이 true이기 때문에 새로운 주인이 뜨고 obj2는 이미 주인이 있기 때문에 실행되지 않고 더이상 바뀌지 않는다
+
+**만약 연산자를 이용하지 않는다면 if문을 활용하여 조금 더 길게 작성해야 한다**
+
+```jsx
+if (obj1.owner) {
+  changeOwner(obj1);
+}
+```
+
+### null 또는 undefined인 경우를 확인할 때
+
+```jsx
+let item = { price: 1 };
+const price = item.price;
+console.log(price); //1
+```
+
+→ 1이 출력되는 것을 확인할 수 있다.
+
+**그렇다면 item에 아무것도 없다면 어떻게 될까?**
+
+```jsx
+let item;
+const price = item.price;
+console.log(price);
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8923c68-a543-494e-ad0f-4eb4379bd414/Untitled.png)
+
+→ price의 값을 못 읽겠다는 에러가 뜨는 것을 확인할 수 있다.
+
+**이것을 단축평가를 하게될 경우에는 어떻게 될까?**
+
+```jsx
+let item;
+const price = item && item.price;
+console.log(price); //false
+```
+
+→ item이 비어있으므로 false 값이 출력되는 것을 확인할 수 있다
+
+**만약 아이템이 있다면 어떻게 될까?**
+
+```jsx
+let item = { price: 1 };
+const price = item && item.price;
+console.log(price); //1
+```
+
+→ item이 true니까 item의 price 값이 price에게 할당되어 값이 출력되는 것을 확인할 수 있다.
+
+### 기본값을 설정하기
+
+```jsx
+function print(message) {
+  console.log(message);
+}
+print(); //undefined
+```
+
+→ 이렇게 message에 아무것도 할당하거나 선언을 하지 않았으므로 undefined가 출력되는 것을 확인할 수 있다.
+
+**그렇다면 다음과 같이 기본값을 설정해보자**
+
+```jsx
+function print(message) {
+  const text = message || "hello";
+  console.log(text);
+}
+print(); //hello
+```
+
+→ message의 값이 false, 즉 없다면 hello를 할당하는 text를 선언을 하니 hello가 출력되는 것을 확인할 수 있다.
+
+**그렇다면 defalut parameter와 똑같지 않을까?**
+
+**defalut parameter는** 전달하지 않거나 또는 undefind 일 때만 설정한다
+
+```jsx
+function print(message = "hi") {
+  // const text = message || "hello";
+  console.log(message);
+}
+print(); //hi
+print(undefined); //h1
+```
+
+→ 둘 다 동일하게 hi가 출력되는 것을 확인할 수 있다.
+
+**그러나 null이나 0과 같은 falshy를 전달할 때에는 어떻게 될까?**
+
+```jsx
+print(null); //null
+print(0); //0
+```
+
+→ null과 0은 **defalut parameter**로 설정되지 않아서 그냥 전달한 값이 전달되는 것을 확인할 수 있다.
+
+### **하지만 or 연산자를 이용하면 조금 다르다**
+
+값이 falshy한 경우에는 설정(할당)이 된다
+
+0, -0, null, undefind, ‘’
