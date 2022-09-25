@@ -1,4 +1,4 @@
-# ITERATOR
+# ITERATOR & GENERATOR
 
 ## 이터레이션 Iteration
 
@@ -83,6 +83,7 @@ array처럼 객체 안에 이터레이션 프로토콜을 따라가는 심볼 �
 ```jsx
 array.values();
 ```
+
 <img width="460" alt="스크린샷 2022-09-25 오후 1 05 16" src="https://user-images.githubusercontent.com/50559373/192129610-ffb075f8-939b-40de-849f-640052f99d81.png">
 
 → values를 호출하면 iterableIterator가 반환되는 것을 확인할 수 있다.
@@ -103,6 +104,7 @@ for (const item of array.values()) {
 <br />
 
 ### keys()
+
 <img width="491" alt="스크린샷 2022-09-25 오후 1 09 50" src="https://user-images.githubusercontent.com/50559373/192129686-cb4d3d02-56c6-4d15-b89e-c51d85297915.png">
 
 ```jsx
@@ -117,8 +119,8 @@ for (const item of array.keys()) {
 <br />
 
 ### entries()
-<img width="485" alt="스크린샷 2022-09-25 오후 1 09 27" src="https://user-images.githubusercontent.com/50559373/192129691-8b2cb86e-1415-4572-a13b-ade74b7b99e8.png">
 
+<img width="485" alt="스크린샷 2022-09-25 오후 1 09 27" src="https://user-images.githubusercontent.com/50559373/192129691-8b2cb86e-1415-4572-a13b-ade74b7b99e8.png">
 
 ```jsx
 const array = [1, 2, 3];
@@ -167,10 +169,9 @@ for (const item in obj) {
 <br />
 <br />
 
-
 ## 조금 더 세밀하게 iterator 파헤쳐 보자!
-<img width="463" alt="스크린샷 2022-09-25 오후 1 25 32" src="https://user-images.githubusercontent.com/50559373/192129700-e43b4411-b5c8-481f-b4b5-00249f809ffc.png">
 
+<img width="463" alt="스크린샷 2022-09-25 오후 1 25 32" src="https://user-images.githubusercontent.com/50559373/192129700-e43b4411-b5c8-481f-b4b5-00249f809ffc.png">
 
 iterator를 호출하면 반복자를 통해서 순회가 가능하다.
 
@@ -203,11 +204,9 @@ console.log(iterator.next()); // { value: 1, done: false }
 
 <img width="496" alt="스크린샷 2022-09-25 오후 1 26 18" src="https://user-images.githubusercontent.com/50559373/192129702-7bd5273a-346a-4853-8b5b-5ec3d06b75cd.png">
 
-
 → result에는 done과 value가 있다!
 
 <br />
-
 
 ```jsx
 console.log(iterator.next().value); // 1
@@ -227,7 +226,6 @@ console.log(iterator.next().value); //3
 
 <br />
 
-
 **그렇다면 한번 더 호출하면 어떤 값이 나올까?**
 
 ```jsx
@@ -237,7 +235,6 @@ console.log(iterator.next().value); //undefined
 → 더이상 호출할 값이 없기 때문에 undefined가 나오는 것을 확인할 수 있다.
 
 <br />
-
 
 **그렇다면 done을 호출하면 어떻게 될까?**
 
@@ -256,6 +253,7 @@ console.log(iterator.next().value);
 console.log(iterator.next().value);
 console.log(iterator.next().done);
 ```
+
 <br />
 
 ### 위를 while문을 이용하여 좀 더 깔끔하게 정리를 해보자
@@ -342,7 +340,6 @@ multiple.throw("Error!");
 ```
 
 <img width="551" alt="스크린샷 2022-09-25 오후 2 16 27" src="https://user-images.githubusercontent.com/50559373/192129706-f2448370-b837-4d43-aa30-c73b95a0e112.png">
-
 
 → 이와 같이 yield에 에러가 있다고 창이 뜬다!
 
