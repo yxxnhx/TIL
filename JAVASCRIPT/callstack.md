@@ -102,3 +102,81 @@ console.log(result);
 ![callstack](../img/callstack.gif)
 
 → 이렇게 a 함수가 전체를 도는 동안 기다렸다가 result 값이 나오는 것을 확인할 수 있다.
+
+<br />
+<br />
+
+## 콜백 비동기 사용해보기
+
+자바스크립트는 순차적으로밖에 사용을 못하는가?
+
+정답은 아니다! 자바스크립트에서는 호스트 환경에서 제공하는 다양한 API들이 있다.
+
+(ex. DOM API, setTimeout, setInterval, fetch, event listner)
+
+브라우저라면 web API, 노드 환경이라면 다양한 API들이 있다.
+
+API들은 비동기적으로 실행하기 때문에 싱글 쓰레드가 아닌 멀티 쓰레드에서 작동하기 때문에 다양한 멀티가 가능하다
+
+예를 들면 fetch를 이용해서 호출해서 다른 웹서버와 통신이 가능하다.
+
+이러한 비동기적인 일도 웹 api를 이용하면 다양한 일들이 가능하다.
+
+setTimeout 또한 비동기적이다
+
+예를 들어 execute라는 함수 안에서 setTimeout을 호출하게 된다면 execute는 콜스택에 들어가 있는 채로 web api인 setTimeout를 호출하는 형식이다.
+
+3초 후에 이 함수를 호출할 call back을 함께 전달을 한다.
+
+그렇게 되면 web에 그 함수를 전달 받아 3초가 지나면 task queue라는 곳에 call back 함수를 전달해주게 된다.
+
+그러면 자바스크립트 웹 환경에 있던 event loop이 call stack과 task queue를 감시하면서 call stack이 비어있다면 call back함수를 call stack에 가져와서 call back 함수를 수행하는 것이다.
+
+<br />
+
+### **한번 다음 예시를 참고하여보자**
+
+```jsx
+function execute() {
+  console.log("1");
+  setTimeout(() => {
+    console.log("2");
+  }, 3000);
+  console.log("3");
+}
+
+execute();
+```
+
+**이 코드에서는 어떠한 순서로 콘솔에 찍힐까?**
+
+정답은 **1, 3, 2**이다
+<br />
+
+### 왜일까?
+
+함수를 호출하면 바로 제일 먼저 1이 출력되고 setTimeout이라는 api를 통해 출력하게 되는데 이 callback 함수는 3000 즉, 3초 뒤에 실행시켜줘라고 명령 후에 그 다음 콘솔인 3을 출력하게 되고 3초 후 2가 출력되는 것이다
+
+<br />
+
+### 타임아웃 구현해보기
+
+```jsx
+function runInDelay(callback, seconds) {
+  if (!callback) {
+    throw new Error("callback 함수를 전달해야 함");
+  }
+  if (!seconds || seconds < 0) {
+    throw new Error("seconds는 0보다 커야 함!");
+  }
+  setTimeout(callback, seconds * 1000);
+}
+
+try {
+  runInDelay(() => {
+    console.log("타이머 완료");
+  }, 2);
+} catch (error) {}
+```
+
+→ try catch 문으로 에러가 발생해도 앱이 죽지 않도록 하는 것이 좋다
