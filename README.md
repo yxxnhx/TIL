@@ -44,6 +44,7 @@
 - [모듈화](./JAVASCRIPT/module.md)
 - [주석](./JAVASCRIPT/comments.md)
 - [Call Stack](/JAVASCRIPT/callstack.md)
+- [Promise](/JAVASCRIPT/promis.md)
 
 ## REACT
 
