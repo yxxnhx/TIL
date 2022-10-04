@@ -21,6 +21,7 @@
 - [상속](/CSS/inheritance.md)
 - [Transition](/CSS/transition.md)
 - [애니메이션](/CSS/animation.md)
+- [Float](/CSS/float.md)
 - [Flex](/CSS/flex.md)
 - [Grid](/CSS/grid.md)
 
