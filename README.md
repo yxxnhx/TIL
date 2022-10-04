@@ -19,6 +19,8 @@
 - [Selector](/CSS/selector.md)
 - [Media](/CSS/media.md)
 - [상속](/CSS/inheritance.md)
+- [Transition](/CSS/transition.md)
+- [애니메이션](/CSS/animation.md)
 - [Flex](/CSS/flex.md)
 - [Grid](/CSS/grid.md)
 
