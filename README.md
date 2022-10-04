@@ -18,6 +18,7 @@
 - [단위](/CSS/unit.md)
 - [Selector](/CSS/selector.md)
 - [Media](/CSS/media.md)
+- [상속](/CSS/inheritance.md)
 - [Flex](/CSS/flex.md)
 - [Grid](/CSS/grid.md)
 
