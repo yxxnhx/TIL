@@ -17,6 +17,7 @@
 - [기초](/CSS/basic.md)
 - [단위](/CSS/unit.md)
 - [Selector](/CSS/selector.md)
+- [Media](/CSS/media.md)
 - [Flex](/CSS/flex.md)
 - [Grid](/CSS/grid.md)
 
