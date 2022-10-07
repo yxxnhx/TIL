@@ -127,13 +127,13 @@ reject를 할 때에는 new 연산자를 이용하여 Error 오브젝트를 만�
 
 ### 이제 함수를 실행해보자
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b0ce2b96-d89b-4751-b11f-61d68cbb1cfe/Untitled.png)
+![Untitled](/img/promise_1.png)
 
 → runInDelay에 2초를 부여하니 성공적으로 타이머 완료와 끝이 출력되는 것을 확인할 수 있다.
 
 **그렇다면 초를 부여하지 않게 에러가 뜨면 어떻게 처리가 될까?**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc9e16c4-b488-4b4b-8097-f65e5fa744f6/Untitled.png)
+![Untitled](/img/promise_2.png)
 
 → error 메시지와 함께 어느 위치에서 에러가 떴는지 안내 그리고 최종적으로 무조건 호출이 되는 finally까지 호출된 것을 확인할 수 있다.
 
