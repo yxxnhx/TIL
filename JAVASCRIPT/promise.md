@@ -15,17 +15,17 @@
 ```jsx
 function runInDelay(callback, seconds) {
   if (!callback) {
-    throw new Error("callback 함수를 전달해야 함");
+    throw new Error('callback 함수를 전달해야 함');
   }
   if (!seconds || seconds < 0) {
-    throw new Error("seconds는 0보다 커야 함!");
+    throw new Error('seconds는 0보다 커야 함!');
   }
   setTimeout(callback, seconds * 1000);
 }
 
 try {
   runInDelay(() => {
-    console.log("타이머 완료");
+    console.log('타이머 완료');
   }, 2);
 } catch (error) {}
 ```
@@ -53,7 +53,7 @@ function runInDelay(seconds) {
 ```jsx
 try {
   runInDelay(() => {
-    console.log("first");
+    console.log('first');
   }, 0);
 } catch (error) {}
 ```
@@ -81,12 +81,12 @@ setTimeout(resolve, seconds * 1000);
 ```jsx
 runInDelay()
   .then(() => {
-    console.log("타이머 완료");
+    console.log('타이머 완료');
   })
   // .catch((error) => console.error(error))
   // 전달되는 인자와 호출할 때 전달하는 인자가 똑같으므로 다음과 같이 생략이 가능하다
   .catch(console.error)
-  .finally(() => console.log("끝"));
+  .finally(() => console.log('끝'));
 ```
 
 → then, catch, finally를 활용하여 수행할 일을 만들어준다
@@ -114,7 +114,7 @@ function runInDelay(seconds) {
 function runInDelay(seconds) {
   return new Promise((resolve, reject) => {
     if (!seconds || seconds < 0) {
-      reject(new Error("seconds가 0보다 작음"));
+      reject(new Error('seconds가 0보다 작음'));
     }
     setTimeout(resolve, seconds * 1000);
   });
@@ -139,4 +139,24 @@ reject를 할 때에는 new 연산자를 이용하여 Error 오브젝트를 만�
 
 ### 만약 catch가 없다면 어떻게 될까?
 
+UnhandledPromiseRejection라는 에러가 뜬다
+
+promise가 rejection이 되었음에도 핸들링할 수 있는 catch가 없다는 에러가 뜨는 것을 확인할 수 있다
+
 프로미스를 만들 때에는 new 연산자를 이용하여 생성해야 하고, Promise 생성자 안에는 promise를 만들 수 있는 콜백함수를 전달해야 한다. 이 콜백함수는 프로미스를 통해 호출이 될 것이고, 콜백함수에는 resolve 성공하였을 때, reject 에러, 실패했을 때의 각각의 콜백함수를 받아와서 호출해올 것이다.
+
+<br />
+
+## 프로미스 함수들
+
+### resolve
+
+```jsx
+function fetchEgg(chicken) {
+  return new Promise((resolve, reject);
+}
+```
+
+기존대로라면 promise를 사용하기 위해서는 new 생성자 함수를 이용하여 위와 같이 생성을 해왔다.
+
+**그러나 바로 resolve를 시킬 수 있는 함수가 있다**
