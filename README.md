@@ -66,6 +66,7 @@
 
 - [기초](/REACT/basic.md)
 - [hook](/REACT/hook.md)
+- [관심사 분리](/REACT/componanent.md)
 - [redux](/REACT/redux.md)
 - [webStorage](/REACT/webStorage.md)
 
