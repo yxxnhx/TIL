@@ -70,6 +70,7 @@
 - [redux](/REACT/redux.md)
 - [webStorage](/REACT/webStorage.md)
 - [Props Drilling](/REACT/props-drilling.md)
+- [React 생략](/REACT/remove-import.md)
 
 ## GITHUB
 
