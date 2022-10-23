@@ -144,19 +144,3 @@ UnhandledPromiseRejection라는 에러가 뜬다
 promise가 rejection이 되었음에도 핸들링할 수 있는 catch가 없다는 에러가 뜨는 것을 확인할 수 있다
 
 프로미스를 만들 때에는 new 연산자를 이용하여 생성해야 하고, Promise 생성자 안에는 promise를 만들 수 있는 콜백함수를 전달해야 한다. 이 콜백함수는 프로미스를 통해 호출이 될 것이고, 콜백함수에는 resolve 성공하였을 때, reject 에러, 실패했을 때의 각각의 콜백함수를 받아와서 호출해올 것이다.
-
-<br />
-
-## 프로미스 함수들
-
-### resolve
-
-```jsx
-function fetchEgg(chicken) {
-  return new Promise((resolve, reject);
-}
-```
-
-기존대로라면 promise를 사용하기 위해서는 new 생성자 함수를 이용하여 위와 같이 생성을 해왔다.
-
-**그러나 바로 resolve를 시킬 수 있는 함수가 있다**

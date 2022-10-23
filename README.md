@@ -60,7 +60,8 @@
 - [모듈화](./JAVASCRIPT/module.md)
 - [주석](./JAVASCRIPT/comments.md)
 - [Call Stack](/JAVASCRIPT/callstack.md)
-- [Promise](/JAVASCRIPT/promis.md)
+- [Promise](/JAVASCRIPT/promise.md)
+- [Promise 매서드](/JAVASCRIPT/promise-methods.md)
 
 ## REACT
 
