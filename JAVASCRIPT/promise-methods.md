@@ -116,7 +116,7 @@ Promise.all([getBanana(), getApple(), getOrange()]).then((fruits) =>
 
 → 앱이 크러쉬되어 죽는 것을 확인할 수 있다. 에러가 났는데 잡을 catch가 없기 때문에 에러가 난다
 
-\***\*\*\*\*\***\*\*\*\*\***\*\*\*\*\***그렇다면 catch를 추가해보자\***\*\*\*\*\***\*\*\*\*\***\*\*\*\*\***
+**그렇다면 catch를 추가해보자**
 
 ```jsx
 Promise.all([getBanana(), getApple(), getOrange()])
