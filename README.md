@@ -78,6 +78,7 @@
 ## TDD
 
 - [jest & react testing library](/REACT/TDD/jest.md)
+- [Test 코드 짜는 법](/REACT/TDD/tdd.md)
 
 ## GITHUB
 
