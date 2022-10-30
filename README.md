@@ -65,6 +65,7 @@
 - [Async Await](/JAVASCRIPT/async-await.md)
 - [JSON](/JAVASCRIPT/json.md)
 - [Scope](/JAVASCRIPT/scope.md)
+- [Garbage Collector](/JAVASCRIPT/garbage.md)
 
 ## REACT
 
