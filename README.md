@@ -75,6 +75,7 @@
 - [hook](/REACT/hook.md)
 - [관심사 분리](/REACT/componanent.md)
 - [redux](/REACT/redux.md)
+- [Flux-architecture](/REACT/flux-architecture.md)
 - [webStorage](/REACT/webStorage.md)
 - [Props Drilling](/REACT/props-drilling.md)
 - [React 생략](/REACT/remove-import.md)
