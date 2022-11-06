@@ -73,3 +73,9 @@ useDispatch Hook 을 사용해서 디스패치 한다.
 #### 구독 (subscribe)
 
 useSelector Hook 을 사용하여 컴포넌트에서 구독해 온다.
+
+<br />
+
+### 실습
+
+- [TDD 사이클을 이용한 To-do App](/REACT/redux-todo.md)
