@@ -73,3 +73,128 @@ function loadRestaurants({ dispatch }) {
 
 - 정보를 가지고 있는 API 서버
 - 데이터를 가지고 오는 fetch
+
+### 그렇다면 본격적으로 API를 이용하여 데이터를 가져와서 화면에 출력하는 작업을 해보자!
+
+먼저 예시로 카테고리를 가져와보자.
+
+**한번 api 서버를 들어가보자.**
+
+[](https://eatgo-customer-api.ahastudio.com/categories)
+
+![](https://velog.velcdn.com/images/yxxnhx/post/ce67ee9b-7ee4-4924-afaf-1989c1bce712/image.png)
+
+현재 api의 categories를 들어가보면 위와 같이 배열로 들어가 있는 것을 볼 수 있다.
+
+이 내용을 가져다가 화면에 보여줄 수 것이다.
+
+**이제 그렇다면 useEffect에 loadCategories를 만들어서 넣어보자!**
+
+```jsx
+function loadCategories({ dispatch }) {
+  const categories = [];
+
+  dispatch(setCategories(categories))
+}
+
+export default function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    loadRestaurants({ dispatch });
+    loadCategories({ dispatch });
+
+  }, [])
+```
+
+위와 같이 넣으면 아래와 같이 setCategories를 찾을 수 없어 일어나는 에러를 볼 수 있을 것이다.
+
+![](https://velog.velcdn.com/images/yxxnhx/post/e8e23cae-7da5-46d8-a3b0-ae5c8c9260a6/image.png)
+
+**그렇다면 이제 actions에서 setCategories를 만들어주자!**
+
+**actions.js**
+
+```jsx
+export function setCategories(categories) {
+  return {
+    type: 'setCategories',
+    payload: {
+      categories,
+    },
+  };
+}
+```
+
+type은 setCategories, payload는 categories를 반환하게 설정을 하면 더이상 에러가 나지 않는 것을 볼 수 있다.
+
+**이제 카테고리를 관리하는 CategoriesContainer를 만들어주자.**
+
+형식은 restaurantsContainer와 비슷하니 형식을 복사해서 수정해보도록 하자.
+
+**CategoriesContainer.jsx**
+
+```jsx
+import React from 'react';
+
+import Restaurants from './Restaurants';
+import { useSelector } from 'react-redux';
+
+export default function CategoriesContainer() {
+  const { restaurants } = useSelector((state) => ({
+    restaurants: state.restaurants,
+  }));
+
+  return <Restaurants restaurants={restaurants} />;
+}
+```
+
+**CategoriesContainer.test.jsx**
+
+```
+import React from 'react'
+
+import { render } from '@testing-library/react'
+
+import CategoriesContainer from './CategoriesContainer'
+
+import { useSelector} from 'react-redux'
+
+jest.mock('react-redux');
+
+test('CategoriesContainer', () => {
+  useSelector.mockImplementation((selector) => selector({
+    categories: [
+      { id: 1, name: '한식' }
+    ]
+  }))
+
+  const { getByText } = render((
+    <CategoriesContainer />
+  ));
+
+  expect(getByText('한식')).not.toBeNull();
+})
+```
+
+이전에 restaurants를 받아왔던 것에서 categories로 변경 후 임의로 테스트용 값을 넣어준다
+
+**그다음 테스트를 통과하기 위해 CategoriesContainer를 수정해보자!**
+
+```jsx
+import React from 'react';
+
+import { useSelector } from 'react-redux';
+
+export default function CategoriesContainer() {
+  const { categories } = useSelector((state) => ({
+    categories: state.categories,
+  }));
+
+  return <p>한식</p>;
+}
+```
+
+→ 테스트에 통과하기 위해 임의로 한식을 넣었다.
+
+테스트가 정상적으로 통과되는 것을 볼 수 있다.
