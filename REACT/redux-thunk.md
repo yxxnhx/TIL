@@ -198,3 +198,87 @@ export default function CategoriesContainer() {
 → 테스트에 통과하기 위해 임의로 한식을 넣었다.
 
 테스트가 정상적으로 통과되는 것을 볼 수 있다.
+
+**그 다음 무엇을 해야할까?**
+
+**CategoriesContainer 안에서 categories를 쓸 수 있도록 설정을 해주자.**
+
+**CategoriesContainer.jsx**
+
+```jsx
+import React from 'react';
+
+import { useSelector } from 'react-redux';
+
+import Categories from './Categories';
+
+export default function CategoriesContainer() {
+  const { categories } = useSelector((state) => ({
+    categories: state.categories,
+  }));
+
+  return <Categories categories={categories} />;
+}
+```
+
+**Categoreis, Categories.test 생성**
+
+Restaurants와 형식이 비슷하니 가져와서 수정해보자!
+
+**Categoreis.jsx**
+
+```jsx
+import React from 'react';
+
+export default function Categories({ categories }) {
+  return (
+    <ul>
+      {categories.map((category) => (
+        <li key={category.id}>{category.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+**Categories.test**
+
+```jsx
+import React from 'react';
+
+import { render } from '@testing-library/react';
+
+import Categories from './Categories';
+
+jest.mock('react-redux');
+
+test('Categories', () => {
+  const categories = [{ id: 1, name: '한식' }];
+
+  const { getByText } = render(<Categories categories={categories} />);
+
+  expect(getByText('한식')).not.toBeNull();
+});
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/4cf78abb-abcd-4adc-b359-f58db17e1d4a/image.png)
+
+이렇게 하면 App에서 프로퍼티를 못 받아와 map을 돌릴 수 없다고 에러가 따는 것을 확인할 수 있다.
+
+**App.test.jsx**
+
+```jsx
+useSelector.mockImplementation((selector) =>
+  selector({
+    restaurants: [],
+    restaurant: {},
+    categories: [],
+  }),
+);
+```
+
+→ 테스트에 categories를 빈값으로 기본값을 잡아주지 않아서 일어난 에러이다.
+
+위와 같이 빈값으로 기본값을 설정해주니 더이상 에러가 나지 않는 것을 확인할 수 있다.
+
+이제 여기까지 카테고리를 가져올 준비는 끝났다.
