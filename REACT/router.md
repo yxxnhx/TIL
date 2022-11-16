@@ -472,3 +472,521 @@ export default function App() {
 ```
 
 이렇게 입력한 주소에 따라서 다른 컴포넌트가 보이게 하는 것을 라우팅이라고 한다.
+
+#### **Routing**
+
+- [SPA & Routing](https://poiemaweb.com/js-spa)
+
+라우팅이란 출발지에서 목적지까지의 경로를 결정하는 기능이다.
+
+애플리케이션의 라우팅은 사용자가 태스크를 수행하기 위해 어떤 화면(view)에서 다른 화면으로 화면을 전환하는 내비게이션을 관리하기 위한 기능을 의미한다.
+
+일반적으로 사용자가 요청한 URL 또는 이벤트를 해석하고 새로운 페이지로 전환하기 위한 데이터를 취득하기 위해 서버에 필요 데이터를 요청하고 화면을 전환하는 위한 일련의 행위를 말한다.
+
+현재는 아주 간단한 구조이기 때문에 이렇게 pathname에 따라서 보이게 설정을 해줄 수 있었지만 실제로는 이것보다 조금 더 고도화된 라이브러리를 사용하여 만들어낼 수 있다.
+
+### 5. react router 사용하여 라우팅하기
+
+#### **React Router**
+
+- [react router](https://reactrouter.com/web/guides/quick-start)
+
+**설치하기**
+
+```jsx
+npm i react-router-dom
+```
+
+```jsx
+import React from 'react';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import HomePage from './HomePage';
+import AboutPage from './AboutPage';
+import NotFoundPage from './NotFoundPage';
+import RestaurantsPage from './RestaurantsPage';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/restaurants" element={<RestaurantsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+- exact : 확실하게 입력했을 때만 들어가게 지정하고 싶을 때
+- - : 지정한 path 외의 에러 페이지를 보여줄 때
+
+**한번 HomePage 컴포넌트에서 일부러 틀린 주소를 연결해보자**
+
+```jsx
+import React from 'react';
+
+export default function HomePage() {
+  return (
+    <div>
+      <h1>home</h1>
+      <ul>
+        <li>
+          <a href="/about">about</a>
+        </li>
+        <li>
+          <a href="/restaurants">restaurants</a>
+        </li>
+        <li>
+          <a href="/xxx">멸망의 길</a>
+        </li>
+      </ul>
+    </div>
+  );
+}
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/870a8ddb-9e9c-464b-99b8-fc40e9bc86f5/image.png)
+
+→ 정상적으로 에러 페이지가 나오는 것을 볼 수 있다.
+
+**그런데 한번 네트워크를 확인해보자**
+
+![](https://velog.velcdn.com/images/yxxnhx/post/52ffc91d-d657-4acc-92e6-79f631ba3875/image.png)
+
+링크에 따라 들어간 페이지가 가장 최상단에 올라가 있는 것을 볼 수 있다.
+
+그런데 실제 홈페이지들은 실제 주소로 옮겨지지 않는다
+
+한번 **Link를 활용하여 설정해보자!**
+
+```jsx
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+export default function HomePage() {
+  return (
+    <div>
+      <h1>home</h1>
+      <ul>
+        <li>
+          <Link to="/about">about</Link>
+        </li>
+        <li>
+          <Link to="/restaurants">restaurants</Link>
+        </li>
+        <li>
+          <Link to="/xxx">멸망의 길</Link>
+        </li>
+      </ul>
+    </div>
+  );
+}
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/325b85ff-17cf-4f4b-8d4a-77676d4588eb/image.png)
+
+→ 더이상 들어간 path로 변경되지 않는 것을 확인할 수 있다.
+
+기존대로 a 태그를 사용해서 페이지 라우팅을 하게 된다면,
+
+현재는 매우 단순해서 문제시가 되지 않지만, 페이지가 많고 사용자의 환경이 느린 인터넷을 사용하고 있다면 로딩 화면이 흰 화면으로 나와 화면이 멈춰있는 듯이 보이게 된다.
+
+그러나 Link to를 이용하여 라우팅을 하게 된다면 가만히 있다가 준비가 되면 페이지가 나오게 되기 때문에 사용자의 불편함을 없애고 좋은 ux를 채워줄 수 있게 된다.
+
+준비를 하는 동안에도 loading… 메시지 혹은 게이지가 올라가는 등의 퍼포먼스들을 기본적으로 세팅을 해서 보여줄 수도 있다.
+
+**그렇다면 이제 테스트를 한번 보자**
+
+![](https://velog.velcdn.com/images/yxxnhx/post/fab8b2d2-966e-4f1c-909e-9eb5bbffb68a/image.png)
+
+→ Router 바깥에서 Link to를 사용해서 일어나는 에러이다
+
+**한번 테스트 파일을 수정해보자**
+
+**HomePage.test.jsx**
+
+```jsx
+import React from 'react';
+
+import { BrowserRouter } from 'react-router-dom';
+
+import { render } from '@testing-library/react';
+
+import HomePage from './HomePage';
+
+test('HomePage', () => {
+  render(
+    <BrowserRouter>
+      <HomePage />
+    </BrowserRouter>,
+  );
+});
+```
+
+→ 테스트 파일에 <BrowserRouter>를 추가해주니 테스트가 정상적으로 통과되는 것을 확인할 수 있다
+
+**하지만 테스트에서는 직접 BrowserRouter를 사용하지 않고 MemoryRouter을 이용한다.**
+
+```jsx
+import React from 'react';
+
+import { MemoryRouter } from 'react-router-dom';
+
+import { render } from '@testing-library/react';
+
+import HomePage from './HomePage';
+
+test('HomePage', () => {
+  render(
+    <MemoryRouter>
+      <HomePage />
+    </MemoryRouter>,
+  );
+});
+```
+
+→ MemoryRouter를 이용하면 훨씬 더 가볍게 테스트 처리를 할 수 있다
+
+**다양한 페이지를 연결되는 것을 보고 싶다면, App에서 라우팅하지말고 index로 BrowserRouter를 옮겨보자**
+
+**index.jsx**
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { Provider } from 'react-redux';
+
+import App from './App';
+
+import store from './store';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('app'),
+);
+```
+
+**App.jsx**
+
+```jsx
+import React from 'react';
+
+import { Route, Routes } from 'react-router-dom';
+
+import HomePage from './HomePage';
+import AboutPage from './AboutPage';
+import NotFoundPage from './NotFoundPage';
+import RestaurantsPage from './RestaurantsPage';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route exact path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/restaurants" element={<RestaurantsPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
+}
+```
+
+**App.test.jsx**
+
+```jsx
+import React from 'react';
+
+import { MemoryRouter } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+
+import { render } from '@testing-library/react';
+
+import App from './App';
+
+test('App', () => {
+  useSelector.mockImplementation((selector) =>
+    selector({
+      regions: [],
+      categories: [],
+      restaurants: [],
+    }),
+  );
+
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+});
+```
+
+이제는 **화면에 따라 다르게 보이는 것을 테스트해보자**
+
+```jsx
+describe('App', () => {
+  beforeEach(() => {
+    useSelector.mockImplementation(selector => selector({
+      regions: [],
+      categories: [],
+      restaurants: []
+    }))
+  })
+
+  context('with path /', () => {
+    it('renders the home page', () =>{
+      const { container } = render((
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      ));
+
+      expect(container).toHaveTextContent('home');
+    })
+  })
+}
+```
+
+→ path가 /일 때에는 홈페이지가 랜더링되는 여부를 테스트하였다
+
+**그렇다면 더 추가적으로 다른 페이지들도 테스트해보자**
+
+```jsx
+context('with path /about', () => {
+  it('renders the about page', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(container).toHaveTextContent('about');
+  });
+});
+```
+
+**HomePage.jsx**
+
+```jsx
+<li>
+  <Link to="/about">소개</Link>
+</li>
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/af282049-754f-4556-8139-7335455e4885/image.png)
+
+about 페이지 연결을 소개를 누르면 할 수 있도록 변경을 하니 이와 같이 에러가 나는 것을 확인할 수 있다.
+
+**AboutPage.jsx**
+
+```jsx
+import React from 'react';
+
+export default function AboutPage() {
+  return (
+    <div>
+      <h1>이 서비스에 대해서</h1>
+      <p>이 서비스는 영국에서 시작되었습니다.</p>
+      <p>이 서비스를 보셨다면 주변에 있는 20명에게 추천하셔야 합니다</p>
+    </div>
+  );
+}
+```
+
+**이렇게 링크로 연결한 페이지 여부를 확인하려면 어떻게 해야 할까?**
+
+링크로 연결한 페이지의 내용이 있는지 여부를 확인하는 것으로 해보자
+
+```jsx
+context('with path /about', () => {
+  it('renders the about page', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(container).toHaveTextContent('20명에게 추천');
+  });
+});
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/932f65ff-071d-4ebc-a7ee-e33da8f2316a/image.png)
+
+→ 여전히 읽어오지 못하고 에러가 나는 것을 확인할 수 있다.
+
+**그렇다면 어떻게 해야 할까?**
+
+MemoryRouter에 initialEntries를 활용하여 path를 설정해주자
+
+```jsx
+<MemoryRouter *initialEntries*={['/about']}>
+```
+
+→ 정상적으로 테스트에 통과되는 것을 확인할 수 있다
+
+**⭐️ !꼭! 배열 Array로 넣어주어야 한다⭐️**
+
+마찬가지로 home을 검사하는 것도 조금 더 명확하게 해주고 싶다면 동일하게 추가를 해주면 된다.
+
+```jsx
+context('with path /', () => {
+  it('renders the home page', () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(container).toHaveTextContent('home');
+  });
+});
+```
+
+그런데 지금 계속해서 아래의 부분이 반복되고 있다
+
+```jsx
+render(
+  <MemoryRouter initialEntries={['/']}>
+    <App />
+  </MemoryRouter>,
+);
+```
+
+**한번 외부로 빼서 정리를 해보자**
+
+```jsx
+function renderApp({ path }) {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <App />
+    </MemoryRouter>,
+  );
+}
+```
+
+path를 받아서 각각의 테스트에서 추가를 해주자
+
+```jsx
+context('with path /', () => {
+  it('renders the home page', () => {
+    const { container } = renderApp({ path: '/' });
+
+    expect(container).toHaveTextContent('home');
+  });
+});
+
+context('with path /about', () => {
+  it('renders the about page', () => {
+    const { container } = renderApp({ path: '/about' });
+
+    expect(container).toHaveTextContent('20명에게 추천');
+  });
+});
+```
+
+→ 정상적으로 테스트에 통과되는 것을 확인할 수 있다
+
+**그렇다면 다른 페이지들도 한번 해보자!**
+
+```jsx
+context('with path /restaurants', () => {
+  it('renders the restaurants page', () => {
+    const { container } = renderApp({ path: '/restaurants' });
+
+    expect(container).toHaveTextContent('서울');
+  });
+});
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/b68f500a-d9a0-4e10-848c-194291702824/image.png)
+
+→ dispatch로 받아오는 RestaurantsPage이기 때문에 dispatch가 없다는 에러가 나는 것을 확인할 수 있다.
+
+**beforeEach에 dispatch를 설정해주자**
+
+```jsx
+beforeEach(() => {
+  const dispatch = jest.fn();
+
+  useDispatch.mockImplementation(() => dispatch);
+
+  useSelector.mockImplementation((selector) =>
+    selector({
+      regions: [],
+      categories: [],
+      restaurants: [],
+    }),
+  );
+});
+```
+
+![](https://velog.velcdn.com/images/yxxnhx/post/c228838c-63e9-4785-9ae0-4aa0a9f8163b/image.png)
+
+→ 그렇다면 더이상 dispatch를 못 읽는다는 에러는 사라지고 서울을 읽지 못하는 에러만 뜬다
+
+**그렇다면 이제 beforeEach로 설정한 초기값에 서울을 넣어보자**
+
+```jsx
+beforeEach(() => {
+  const dispatch = jest.fn();
+
+  useDispatch.mockImplementation(() => dispatch);
+
+  useSelector.mockImplementation((selector) =>
+    selector({
+      regions: [{ id: 1, name: '서울' }],
+      categories: [],
+      restaurants: [],
+    }),
+  );
+});
+```
+
+→ 정상적으로 테스트가 통과되는 것을 확인할 수 있다
+
+**유효하지 않은 path도 검사를 해보자**
+
+```jsx
+context('with invalid path', () => {
+  it('renders the 404 not found page', () => {
+    const { container } = renderApp({ path: '/xxx' });
+
+    expect(container).toHaveTextContent('Not Found');
+  });
+});
+```
+
+바깥에서 테스트를 하기 위하여 분리를 하기 위해서 App에서는 바로 Routes로 들어가고 BrowserRouter는 index로 옮긴 점만 유의하면 된다.
+
+**만약에 나머지 모두가 동일한데 공통된 헤더가 있다면 어떻게 해야 할까?**
+
+```jsx
+export default function App() {
+  return (
+    <div>
+      <header>여기는 헤더입니다</header>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/restaurants" element={<RestaurantsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
+  );
+}
+```
+
+이렇게 Routes로 감싸진 부분만 변경이 될 뿐 바깥에 있는 header는 그대로 유지되는 것을 볼 수 있다
+
+만약 헤더의 로고를 눌렀을 때 기존의 홈페이지들처럼 홈으로 이동하게 하고 싶다면 link를 이용하여 연결해주면 된다.
