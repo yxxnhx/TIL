@@ -70,6 +70,7 @@
 - [실행 컨텍스트](/JAVASCRIPT/execution.md)
 - [호이스팅](/JAVASCRIPT/hoisting.md)
 - [RORO 패턴]()
+- [프로토타입](/JAVASCRIPT/proto.md)
 
 ## REACT
 
