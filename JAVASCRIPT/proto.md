@@ -70,3 +70,296 @@ console.log(dog.hasOwnProperty('name')); // true
 이 둘을 비교해보면 in이라는 연산자를 이용해서 확인하는 것이 더 효율적이라는 것을 알 수 있다.
 
 오브젝트의 각각의 프로퍼티는 프로퍼티 디스크립터라고 하는 객체로 저장되어있다.
+
+**한번 디스크립터를 확인해보자**
+
+### Object.getOwnPropertyDescriptors
+
+가지고 있는 모든 키의 디스크립터를 확인할 수 있다.
+
+```jsx
+const descriptors = Object.getOwnPropertyDescriptors(dog);
+console.log(descriptors);
+// {
+//  name: { value: '와우', writable: true, enumerable: true, configurable: true },
+//  emoji: { value: '🐶', writable: true, enumerable: true, configurable: true }
+// }
+```
+
+→ 각각 name이라는 키에 있는 디스크립터, emoji라는 키의 디스크립터를 각각 확인할 수 있다
+
+- value : 값
+- writable : 값 수정 여부
+- enumerable : 값 열거 여부
+- configurable : 속성 수정 및 삭제 여부
+
+→ 기본적으로 설정을 따로 하지 않으면 모두 default 값으로 true가 나온다
+
+**그렇다면 만약 특정한 키의 하나만 받아오고 싶다면 어떻게 해야 할까?**
+
+### Object.getOwnPropertyDescriptor
+
+특정한 키의 디스크립터를 확인할 수 있다.
+
+```jsx
+const desc = Object.getOwnPropertyDescriptor(dog, 'name');
+console.log(desc);
+// { value: '와우', writable: true, enumerable: true, configurable: true }
+```
+
+→ name에 대한 디스크립터를 확인할 수 있다.
+
+**위의 디스크립터를 변경하고 싶다면 어떻게 해야할까?**
+
+### Object.defineProperty
+
+```jsx
+Object.defineProperty(dog, 'name', {
+  value: '멍멍',
+  writable: false, // 수정할 수 있니? 아니
+  enumerable: false, // 열거할 수 있니? 아니
+  configurable: false, // 삭제할 수 있니? 아니
+});
+```
+
+→ 각각의 디스크립터들을 false로 모두 변경해보자
+
+```jsx
+console.log([dog.name](http://dog.name/)); // '멍멍'
+```
+
+→ dog 객체의 name이 변경되어 멍멍으로 출력되는 것을 확인할 수 있다.
+
+**그리고 열거를 할 수 없게 false로 변경해두었으니 한번 확인해보자**
+
+```jsx
+console.log(Object.keys(dog)); //[ 'emoji' ]
+console.log(Object.values(dog)); //[ '🐶' ]
+console.log(Object.entries(dog)); //[ [ 'emoji', '🐶' ] ]
+```
+
+key, value, entries를 호출해도 모두 emoji에 관한 값만 나열되어 출력되는 것을 확인할 수 있다.
+
+그렇다면 삭제 여부도 false로 변경해두었으니 확인해보자
+
+```jsx
+delete dog.name;
+console.log(dog.name); //멍멍
+```
+
+→ delete를 활용해 지워도 계속해서 dog의 name이 출력되어 나오는 것을 확인할 수 있다.
+
+**그렇다면 하나의 디스크립터 말고 여러 개의 디스크립터를 수정하고 싶다면 어떻게 해야 할까?**
+
+### Object.defineProperties
+
+```jsx
+const student = {};
+Object.defineProperties(student, {
+  firstName: {
+    value: '영희',
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  },
+  lastName: {
+    value: '김',
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  },
+  fullName: {
+    get() {
+      return `${lastName} ${firstName}`;
+    },
+    set(name) {
+      [this.lastName, this.firstName] = name.split(' ');
+    },
+    configurable: true,
+  },
+});
+
+console.log(student);
+```
+
+이와 같이 definedProperties를 활용하여 각각의 키를 생성하여 만들어낼 수 있다.
+
+그렇다면 매번 이렇게 defineProperties를 활용하여 매번 속성들을 변경해야 할까?
+
+아니다. 속성들을 동결시키고, 확장을 금지 시키는 등의 다양한 매서드들이 있다
+
+### Object.freeze
+
+오브젝트의 속성을 동결시킨다
+
+```jsx
+Object.freeze(dog);
+dog.name = '멍멍';
+console.log(dog.name); //와우
+```
+
+값을 추가해도 추가되지 않는다
+
+```jsx
+dog.age = 4;
+console.log(dog.age); //undefined
+```
+
+키를 삭제도 불가능하다
+
+```jsx
+delete dog.name;
+console.log(dog); //{ name: '와우', emoji: '🐶', owner: { name: 'yxxn' } }
+```
+
+이처럼 객체를 동결하면 추가, 삭제, 쓰기, 속성 재정의 모두 불가능하다
+
+단, 얕은 카피처럼 얕은 동결이 된다.
+
+```jsx
+yxxn.name = 'ㅎㅎ';
+console.log(dog.owner); //ㅎㅎ
+```
+
+이와 같이 중첩되어 있는 값을 변경하면 얕은 카피처럼 얕게 동결되어 값이 변경되는 것을 확인할 수 있다
+
+### Obeject.assign
+
+오브젝트를 복사해서 가져온다
+
+```jsx
+const cat = {};
+Object.assign(cat, dog);
+console.log(cat); //{ name: '와우', emoji: '🐶', owner: { name: 'ㅎㅎ' } }
+```
+
+→ dog에 있는 모든 프로퍼티를 복사해서 가져올 수 있다.
+
+```jsx
+const cat = { ...dog };
+console.log(cat); //{ name: '와우', emoji: '🐶', owner: { name: 'ㅎㅎ' } }
+```
+
+→ 스프래드 연산자를 이용하여 dog를 하나하나 풀어서 가져오는 것과 비슷하다
+
+### Object.seal
+
+객체를 밀봉한다
+
+값의 수정은 가능하나 키를 추가하거나 삭제, 속성 재정의는 불가능하다
+
+```jsx
+Object.seal(cat);
+cat.name = '야옹';
+console.log(cat); //{ name: '야옹', emoji: '🐶', owner: { name: 'ㅎㅎ' } }
+```
+
+name의 value가 변경된 것을 확인할 수 있다.
+
+**그렇다면 삭제는 가능할까?**
+
+```jsx
+delete cat.emoji;
+console.log(cat); //{ name: '야옹', emoji: '🐶', owner: { name: 'ㅎㅎ' } }
+```
+
+삭제는 되지 않는 것을 확인할 수 있다
+
+**그렇다면 freeze 되었는지 seal 되었는지 확인은 어떻게 할까?**
+
+### Object.isFrozen / Object.isSealed
+
+```jsx
+console.log(Object.isFrozen(dog));
+console.log(Object.isSealed(dog));
+console.log(Object.isFrozen(cat));
+console.log(Object.isSealed(cat));
+```
+
+→ 값은 true / false boolean으로 나온다
+
+### Object.preventExtensions
+
+확장 금지 / 추가만 불가
+
+```jsx
+const tiger = {
+  name: '어흥',
+};
+
+Object.preventExtensions(tiger);
+console.log(Object.isExtensible(tiger)); //false
+```
+
+**이렇게 확장이 금지된 오브젝트는 값 수정이 가능하다**
+
+```jsx
+tiger.name = '야옹';
+console.log(tiger); //{ name: '야옹' }
+```
+
+**값 삭제도 가능하다**
+
+```jsx
+delete tiger.name;
+console.log(tiger); //{}
+```
+
+그러나 확장이 불가능하기 때문에 새로운 값을 추가는 할 수 없다
+
+```jsx
+tiger.age = 1;
+console.log(tiger); //{}
+```
+
+## 프로토타입 Prototype
+
+```jsx
+const dog1 = {
+  name: '뭉치',
+  emoji: '🐶',
+};
+
+const dog2 = {
+  name: '뭉치',
+  emoji: '🐩',
+};
+```
+
+이전에 이와 같이 동일한 오브젝트를 만들 때에는 생성자 함수를 이용하여 만들어낼 수 있었다.
+
+```jsx
+function Dog(name, emoji) {
+  this.name = name;
+  this.emoji = emoji;
+}
+
+const dog1 = new Dog('뭉치', '🐶');
+const dog2 = new Dog('코코', '🐩');
+
+console.log(dog1, dog2);
+//Dog { name: '뭉치', emoji: '🐶' } Dog { name: '코코', emoji: '🐩' }
+```
+
+이렇게 생성자 함수를 이용하여 코드를 재사용 할 수 있었다
+
+**그렇다면 여기서 생성자 안에 함수가 있다면 어떻게 될까?**
+
+```jsx
+function Dog(name, emoji) {
+  this.name = name;
+  this.emoji = emoji;
+  this.printName = () => {
+    console.log(`${this.name} ${this.emoji}`);
+  };
+}
+
+const dog1 = new Dog('뭉치', '🐶');
+const dog2 = new Dog('코코', '🐩');
+
+console.log(dog1, dog2);
+//Dog { name: '뭉치', emoji: '🐶', printName: [Function (anonymous)] }
+//Dog { name: '코코', emoji: '🐩', printName: [Function (anonymous)] }
+```
+
+→ 계속해서 동일한 함수가 추가되어 출력되는 것을 확인할 수 있다.
