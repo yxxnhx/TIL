@@ -363,3 +363,109 @@ console.log(dog1, dog2);
 ```
 
 → 계속해서 동일한 함수가 추가되어 출력되는 것을 확인할 수 있다.
+
+### 인스턴스 레벨의 함수
+
+```jsx
+this.printName = () => {
+  console.log(`${this.name} ${this.emoji}`);
+};
+```
+
+만들어진 인스터스들마다 동일한 함수를 가지고 있다
+
+그렇다면 생성자 함수를 이용해서 100개를 만든다면 100개의 함수가 계속해서 생성이 된다. 그렇게 되면 메모리 낭비가 심하게 일어나게 된다는 것이다.
+
+### 이 점을 보완하기 위해 프로토타입 레벨의 함수를 생성해보자
+
+```jsx
+Dog.prototype.printName = function () {
+  console.log(`${this.name} ${this.emoji}`);
+};
+const dog1 = new Dog('뭉치', '🐶');
+const dog2 = new Dog('코코', '🐩');
+//Dog { name: '뭉치', emoji: '🐶' } Dog { name: '코코', emoji: '🐩' }
+```
+
+→ 더이상 인스턴트 레벨의 함수들이 계속해서 출력되지 않는 것을 확인할 수 있다
+
+```jsx
+dog1.printName(); //뭉치 🐶
+dog2.printName(); //코코 🐩
+```
+
+→ 접근 및 사용 가능한 것을 확인할 수 있다.
+
+크롬 콘솔 창에 찍어보면 다음과 같이 나와있는 것을 볼 수 있다.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b0a949eb-17d2-4730-9ee9-b4e526cf7aea/Untitled.png)
+
+dog1, dog2는 각각 이름과 이모지를 가지고 있고 프로토타입으로 오브젝트를 가지고 있다.
+
+그 프로토타입을 보면 그 안에 printName이라는 함수를 가지고 있는 것을 볼 수 있다.
+
+즉, 동일한 프로토타입을 상속하고 있는 것을 확인해볼 수 있다.
+
+### 오버라이딩
+
+인스턴스 레벨에서(자식) 동일한 이름으로 함수를 재정의하면(오버라이딩하면) 프로토타입 레벨의(부모) 함수의 프로퍼티는 가려진다
+
+즉, 셰도잉된다.
+
+예를 들어 아래와 같이 printName 함수가 있다고 가정하자
+
+```jsx
+Dog.prototype.printName = function () {
+  console.log(`${this.name} ${this.emoji}`);
+};
+```
+
+하단에서 나는 dog1만의 printName을 사용하고 싶어 아래와 같이 지정하여보자
+
+```jsx
+dog1.printName = function () {
+  console.log('안녕');
+};
+
+dog1.printName(); // 안녕
+```
+
+→ 오버라이딩 되어 안녕이 출력되어 나오는 것을 확인할 수 있다.
+
+즉, 자식 레벨에서 함수를 재정의하지 않으면, 프로토타입에 있는 것을 쓰고, 재정의하면 오버라이딩 되어 프로토타입 레벨에 있는 함수 프로퍼티는 가려지고 오버라이딩 되어 재정의한 것이 출력된다.
+
+이처럼 프로퍼티 레벨이 함수는 우리가 각각 만들어진 객체에서 공통적으로 사용할 수 있는 함수를 만들었다.
+
+클래스에서 static 함수를 만들면 각각의 인스턴트에서는 접근이 불가능하지만 클래스 이름으로는 접근이 가능하였다.
+
+**이와 같은 정적 레벨의 함수도 프로퍼티에서 만들 수 있다.**
+
+### 정적 레벨
+
+```jsx
+Dog.hello = () => {
+  console.log('hello');
+};
+```
+
+이렇게 생성자 이름 뒤에 함수를 바로 만들면 정적 레벨의 함수를 만들어낼 수 있다.
+
+그렇다면 한번 인스턴스에서 접근을 해보자.
+
+```jsx
+dog1.hello();
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b733dac9-5527-44b9-90e8-4ac9bbf3d539/Untitled.png)
+
+→ 접근이 불가능하다.
+
+그렇다면 생성자 이름으로 접근을 해보자.
+
+```jsx
+Dog.hello(); //hello
+```
+
+→ 정상적으로 hello가 출력되는 것을 확인할 수 있다.
+
+각각의 인스턴스 별로 공통된 함수가 있다면, 이와 같이 쓸 수 있다.
