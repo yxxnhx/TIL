@@ -124,3 +124,99 @@ name = 20;
   - 객체 단위로 확장해나갈 수 있다
 - 유지보수
   - 기존 코드의 문제 해결이나 새로운 기능을 추가할 때 유지보수성이 높다
+
+### 그렇다면 한번 같이 타입스크립트를 사용해보자!
+
+[How to set up TypeScript](https://www.typescriptlang.org/download)
+
+- **설치하기**
+
+```jsx
+npm install typescript
+```
+
+**먼저 ts 파일 생성 후 간단하게 hello world를 콘솔에 찍어보자**
+
+```jsx
+console.log('hello world');
+```
+
+가장 간단하게 확인할 수 있는 방법은 node를 이용하는 것이다.
+
+```jsx
+node main.ts
+```
+
+터미널에 위와 같이 node main.ts를 치면 터미널에 hello world가 뜨는 것을 확인할 수 있다.
+
+그렇다면 크롬에서 확인을 해보자.
+
+**index.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="main.ts"></script>
+  </head>
+  <body></body>
+</html>
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a94c3593-2e6b-450d-aa89-5967eb709a78/Untitled.png)
+
+→ ts 파일을 읽어오는 것을 거절당한 것을 확인할 수 있다.
+
+html에서 바로 ts 파일을 읽어오는 것은 불가능하기 때문이다.
+
+그렇다면 tsc를 활용해서 읽어오도록 변경해보자.
+
+```jsx
+tsc main.ts
+```
+
+터미널에 tsc main.ts를 치면 자동으로 main.js가 생성되는 것을 확인할 수 있다.
+
+이것이 바로 타입스크립트가 자바스크립트로 컴파일되는 것이다.
+
+```jsx
+console.log('hello world');
+```
+
+main.js에도 동일하게 hello world가 있는 것을 확인할 수 있다.
+
+그렇다면 index.html에도 script를 ts가 아닌 js로 변경을 해주자.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/495fad0e-26bd-4b04-9b85-63c47bcf51be/Untitled.png)
+
+정상적으로 로컬에서도 콘솔에 찍히는 것을 확인할 수 있다.
+
+**그렇다면 매번 이렇게 코드를 추가할 때마다 tsc를 해야할까?**
+
+결론부터 말하자면 아니다.
+
+tsc에는 다양한 옵션들과 명령어들이 있다.
+
+한번 확인해보자.
+
+```jsx
+tsc - h;
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83e4b7cb-937b-4422-85bc-90245ec56f60/Untitled.png)
+
+→ 굉장히 다양한 명령어들이 있는 것을 확인할 수 있다.
+
+그 중에서 자동으로 업데이트 해주는 w를 사용해보자.
+
+```jsx
+tsc main.ts -w
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c915008-1f42-47a3-88dc-249804d4375f/Untitled.png)
+
+→ 위와 같이 명령어를 치면 터미널에는 컴파일이 시작됨을 알려주고 크롬을 확인하여 보면 ts 파일에서 변경하고 저장하는대로 즉각적으로 변경되는 것을 확인할 수 있다.
