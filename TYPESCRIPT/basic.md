@@ -167,7 +167,8 @@ node main.ts
 </html>
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a94c3593-2e6b-450d-aa89-5967eb709a78/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/50559373/210254164-59ae68bf-9d12-4a88-a41a-2de5c8d7cd22.png)
+
 
 → ts 파일을 읽어오는 것을 거절당한 것을 확인할 수 있다.
 
@@ -191,7 +192,8 @@ main.js에도 동일하게 hello world가 있는 것을 확인할 수 있다.
 
 그렇다면 index.html에도 script를 ts가 아닌 js로 변경을 해주자.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/495fad0e-26bd-4b04-9b85-63c47bcf51be/Untitled.png)
+<img width="548" alt="스크린샷 2023-01-03 오전 12 45 25" src="https://user-images.githubusercontent.com/50559373/210254185-5ee22a31-5fc2-453b-82d5-c2e363f43280.png">
+
 
 정상적으로 로컬에서도 콘솔에 찍히는 것을 확인할 수 있다.
 
@@ -207,7 +209,8 @@ tsc에는 다양한 옵션들과 명령어들이 있다.
 tsc - h;
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83e4b7cb-937b-4422-85bc-90245ec56f60/Untitled.png)
+![스크린샷 2023-01-03 오전 12 46 41](https://user-images.githubusercontent.com/50559373/210254196-a6df27b9-53fa-49b1-82c2-baf1502f1ec3.png)
+
 
 → 굉장히 다양한 명령어들이 있는 것을 확인할 수 있다.
 
@@ -217,6 +220,7 @@ tsc - h;
 tsc main.ts -w
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c915008-1f42-47a3-88dc-249804d4375f/Untitled.png)
+![스크린샷 2023-01-03 오전 12 48 18](https://user-images.githubusercontent.com/50559373/210254208-99b1de06-14ef-4f77-a044-de749d217afd.png)
+
 
 → 위와 같이 명령어를 치면 터미널에는 컴파일이 시작됨을 알려주고 크롬을 확인하여 보면 ts 파일에서 변경하고 저장하는대로 즉각적으로 변경되는 것을 확인할 수 있다.
