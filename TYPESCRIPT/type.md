@@ -147,3 +147,132 @@ function find(): number | undefined {
 무언가를 찾는 find 함수에서 찾았다면 number, 못 찾았다면 undefined를 반환할 수 있도록 데이터타입을 선언해주는 것이다.
 
 이처럼 무언가가 있고 없을 때 undefined을 쓰는 것이다!
+
+- unknown
+
+```tsx
+let notSure: unknown = 0;
+notSure = 'hi';
+notSure = true;
+```
+
+unknown 알 수 없는, 이 변수에 어떤 타입이 들어올 수 있을지 잘 모르겠어
+
+→ 초기값을 0으로 잡아주었어도 string과 boolean 타입이 모두 재할당되는 것을 확인할 수 있다.
+
+- any
+
+```tsx
+let anything: any = 0;
+anything = 'hi';
+```
+
+어떤 타입이든 다 담을 수 있다
+
+→ any도 unknown과 마찬가지로 초기값을 0 number로 잡아주어도 string이 재할당 될 수 있다.
+
+위에 살펴보았듯이 타입이 명확하게 정해지지 않았기 때문에 unknown과 any는 **가능하면 사용하지 않는 것이 좋다**
+
+**그렇다면 왜 이런 타입이 있는 것일까?**
+
+타입스크립트는 타입이 없는 자바스크립트와 연동해서 사용할 수 있기 때문이다.
+
+타입스크립트에서 자바스크립트 라이브러리를 이용하는 경우에 자바스크립트에서 리턴하는 타입을 모를 때 unknown을 쓸 수 있다.
+
+- void
+
+자바스크립트에서 알게 모르게 사용했던 타입이다
+
+```tsx
+function print() {
+  console.log('hello');
+  return;
+}
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bc5bf265-d6a7-42f2-b32a-0592fb4969c4/Untitled.png)
+
+→ 무언가를 프린트하는 함수, 콘솔에 출력만 할뿐 아무것도 리턴하지 않는 함수에 커서를 올리면 void라고 뜨는 것을 확인할 수 있다.
+
+자동으로 void라고 선언되어 있는 것이다. 즉, 아무것도 리턴하지 않으면 void, 텅텅 빈, 공허한 이라는 의미를 가지고 있다.
+
+보통은 함수에서 무언가를 리턴할 때 타입을 명시하는 것이 좋다.
+
+void인 경우에는 생략할 수 있는데 회사나 프로젝트에 따라서 규칙에 따르는 것이 좋다.
+
+위와 같이 함수에서는 사용되나 아래와 같이 변수에는 사용되는 경우는 드물다.
+
+```jsx
+let unusable: void = undefined;
+```
+
+왜냐하면 void로 선언하였을 경우에는 undefined 어떠한 값이 들어올지 모르는 상태인 것만 할당이 가능하기 때문이다. 즉, 활용성이 떨어진다.
+
+void 외에도 함수에서 쓰이는 타입이 또 있다.
+
+- never
+
+아무것도 절대 반환하지 않는 함수라니 무엇일까? 그 함수를 호출하면 앱이 죽거나 영원히 중지되어있을텐데
+
+아래의 예시를 참고해보자.
+
+```tsx
+function throwError(message: string): never {
+  throw new Error(message);
+}
+```
+
+→ 어떠한 어플리케이션에서 예상치 못한, 핸들링할 수 없는 에러를 호출할 수 있는 함수이다.
+
+에러 메세지를 string으로 받아서 never를 리턴하게 하는 것이다.
+그리고 그 메세지를 서버로 로그를 넘기고 그 에러를 어플리케이션에서 에러를 던질 수 있게 하는 것이다. 그 에러를 던지면 어플리케이션은 죽게 되는 것이다.
+
+즉, throwError라는 함수는 리턴하는 값이 절대 없기 때문에 never라고 명시해주면서 이 함수를 호출하면 리턴할 계획이 절대 없으니까 그 점을 감안해서 코딩하라는 뜻과 동일하다.
+
+그렇다면 이와 동일하게 never를 쓸 수 있는 경우는 또 무엇이 있을까?
+
+```tsx
+function throwError(message: string): never {
+  while (true) {
+    //
+  }
+}
+```
+
+→ 바로 while문을 true로 설정하여 계속해서 while 문을 돌게 만들어주는 것이다. while문을 계속 돌면 끝나지 않기 때문에 리턴할 값이 없으므로!
+
+위의 두 가지 경우 외에 never가 아닐 경우에 never를 쓰게 된다면 에러가 뜨는 것을 확인할 수 있다.
+
+```jsx
+let neverEnding: never;
+```
+
+또한 위와 같이 변수에 never라고 선언해서 사용하는 경우도 없다.
+
+- object
+
+```tsx
+let obj: object;
+function acceptSomeObject(obj: object) {}
+```
+
+→ object라고 타입을 선언하고 인자로 오브젝트를 받을 수 있게 설정하면 어떤 타입의 데이터도 담을 수 있다.
+
+```tsx
+acceptSomeObject({ name: 'yxxn' });
+acceptSomeObject({ animal: 'cat' });
+```
+
+어떠한 오브젝트도 다 담을 수 있는 것이다. 이렇게 이름을 담을수도, animal을 담을 수도 있다. 전혀 에러가 나지 않는 것을 확인할 수 있다.
+
+이처럼 오브젝트 타입은 원시 타입을 제외한 모든 오브젝트 타입을 할당할 수 있다.
+
+심지어 아래와 같이 배열을 받을 수도 있다.
+
+```jsx
+let obj: object = [1, 2, 3, 4];
+```
+
+→ 이처럼 광범위한, 추상적인, 어떠한 것이든 다 담을 수 있는 이런 타입은 굉장히 좋지 않다.
+
+오브젝트 타입 또한 가능하면 쓰지 않는 것이 좋다. 가능하면 구체적으로 오브젝트도 어떠한 타입인지 명시하여 쓰는 것이 좋다.
