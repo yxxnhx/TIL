@@ -276,3 +276,186 @@ let obj: object = [1, 2, 3, 4];
 → 이처럼 광범위한, 추상적인, 어떠한 것이든 다 담을 수 있는 이런 타입은 굉장히 좋지 않다.
 
 오브젝트 타입 또한 가능하면 쓰지 않는 것이 좋다. 가능하면 구체적으로 오브젝트도 어떠한 타입인지 명시하여 쓰는 것이 좋다.
+
+### Function 함수
+
+**그렇다면 함수에서는 타입을 어떻게 선언하여 사용할까?**
+
+```tsx
+function jsAdd(num1, num2) {
+  return num1 + num2;
+}
+```
+
+→ 위와 같이 간단히 숫자를 더하는 함수를 타입스크립트로 타입을 선언하여 보자.
+
+```tsx
+function add(num1: number, num2: number): number {
+  return num1 + num2;
+}
+```
+
+→ 인자로 받는 num1, num2를 number라고 타입을 명시하였고, 리턴하는 값 또한 number라고 타입을 명시하여 아래 함수 내부를 보지 않아도 명확하게 함수를 파악할 수 있게 되었다.
+
+현재는 굉장히 간단한 함수여서 타입이 없어도 쉽게 파악이 가능하지만 실제 코드에서 사용하는 함수 내부에서 코드가 길어질 경우 타입이 지정되어 있지 않으면 어떠한 데이터를 받아서 어떠한 값을 리턴하는지 파악하기 어렵다.
+
+**그렇다면 다음 경우를 한번 보자**
+
+```tsx
+function jsFetchNum(id) {
+  return new Promise((resolve, reject) => {
+    resolve(100);
+  });
+}
+```
+
+→ id를 받아서 fetch하는 함수이다. 이 함수를 타입스크립트로 타입을 선언하여 보자
+
+```tsx
+function fetchNum(id: string): Promise<number> {
+  return new Promise((resolve, reject) => {
+    resolve(100);
+  });
+}
+```
+
+→ id를 string으로 받아서 리턴값은 Promise를, Promise 중에서도 숫자를 받기 때문에 number 타입으로 설정해주면 된다.
+
+위와 같이 타입을 지정해주면 fetchNum이라는 함수는 string 타입인 id를 인자로 받아서 Promise를 반환하구나 근데 그 반환하는 것이 숫자 타입이구나라는 것을 쉽게 파악할 수 있는 것이다.
+
+**그렇다면 함수에서 사용할 수 있는 문법들에 대해서 조금 더 자세히 알아보자**
+
+최신 자바스크립트 코드는 타입스크립트에서도 사용할 수 있다.
+또한 자바스크립트에서 포함되어있지 않은 최신 타입스크립트에서만 제공하는 문법도 사용할 수 있다.
+
+그렇다면 이를 활용한 함수에서 타입을 정의하는 타입스크립트 문법을 알아보자.
+
+- Optional Parameter 옵셔널 파라미터
+
+```tsx
+function printName(firstName: string, lastName: string) {
+  console.log(firstName);
+  console.log(lastName);
+}
+```
+
+위와 같이 이름과 성을 받아서 프린트 해주는 함수가 있다.
+
+```jsx
+printName('yxxnhx', 'seo');
+```
+
+이름과 성 모두 전달해야 정상적으로 출력이 되는 것을 확인할 수 있다.
+
+그렇다면 이름과 성 중 하나만 할당하면 어떻게 될까?
+
+```jsx
+printName('yxxn');
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/437d2b58-dd2d-4d9a-82cf-c1a5a33ff725/Untitled.png)
+
+→ 곧바로 두 개의 인수가 필요한데 하나만 할당했다고 에러가 뜨는 것을 확인할 수 있다.
+
+그렇다면 이름 과 성 중 하나만 할당하고 나머지 하나는 string이 아닌 다른 타입을 할당하면 어떻게 될까?
+
+```jsx
+printName('Anna', undefined);
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd948d71-3dbf-4791-aa20-4e016043b75d/Untitled.png)
+
+→ undefined라고 잘못 할당했다는 에러가 뜨는 것을 확인할 수 있다.
+
+그런데 만약 이름과 성 중 하나만 할당해도 제대로 출력이 되는 함수를 만들고 싶다면 어떻게 해야할까?
+
+그럴 때 사용할 수 있는 것이 옵셔널 파라미터이다.
+
+```tsx
+function printName(firstName: string, lastName?: string) {
+  console.log(firstName);
+  console.log(lastName);
+}
+```
+
+→ 위처럼 ?를 추가하였을 때 string이 들어올 수도, 들어오지 않을 수도 있다고 명시해주는 것이다.
+
+그렇다면 또는 | 을 사용하여 `| undefined`과 비슷하다고 생각할 수도 있다.
+
+```tsx
+function printName(firstName: string, lastName: string | undefined) {
+  console.log(firstName);
+  console.log(lastName);
+}
+```
+
+→ 이와 같이 선언할 경우, 무조건 string 혹은 undefined 둘 중에 하나가 들어와야 하기 때문에 하나만 할당한 아래의 경우에서 에러가 나는 것을 확인할 수 있다.
+
+```jsx
+printName('yxxn');
+```
+
+즉, 에러를 없애기 위해서는 명시적으로 뒤에 undefined을 할당해주어야만 에러가 더이상 나지 않는 것을 확인할 수 있다.
+
+이렇게 하면 코드가 복잡해지기 때문에 옵셔널 파라미터를 이용하는 것이 좋다!
+
+- Default Parameter 디폴트 파라미터
+
+```tsx
+function printMessage(message: string) {
+  console.log(message);
+}
+
+printMessage();
+```
+
+위와 같이 message를 출력하는 함수가 있다.
+그런데 printMessage를 호출할 때 아무런 인수를 전달하지 않는다면 에러가 나는 것을 확인할 수 있다.
+
+만약 아무것도 전달하지 않는다면 디폴트값을 설정하여 그 값을 반환하도록 할 수 있다.
+
+그것이 바로 디폴트 파라미터이다.
+
+```tsx
+function printMessage(message: string = 'default message') {
+  console.log(message);
+}
+
+printMessage(); //default message
+```
+
+위와 같이 기본값을 설정해주면 아무런 값을 전달하지 않은 채로 호출하게 되면 기본값이 출력되는 것을 확인할 수 있다.
+
+- Rest Parameter
+
+만약 인자들을 더해주는 addNumbers 함수를 만들고 싶다고 가정해보자.
+
+```tsx
+console.log(addNumbers(1, 2));
+console.log(addNumbers(1, 2, 3, 4));
+console.log(addNumbers(1, 2, 3, 4, 5, 6, 7));
+```
+
+근데 위와 같이 그 인자들의 갯수는 정해지지 않았다.
+
+이럴 때는 어떻게 해야 할까?
+
+```tsx
+function addNumbers(...numbers: number[]): number {
+  return numbers.reduce((a, b) => a + b);
+}
+```
+
+→ 스프래드 연산자를 이용하여 numbers를 풀어서 가져올건데 그 타입은 number라는 타입인데 배열을 받아온다고 선언해준 후 반환하는 값 또한 숫자라고 선언을 해주는 것이다.
+
+위처럼 스프래드 연산자를 활용하면 정상적으로 전달받은 인수들을 모두 합한 값을 반환하는 것을 확인할 수 있다.
+
+그렇다면 선언한 숫자 타입 외에 다른 타입을 전달하면 어떻게 될까?
+
+```jsx
+console.log(addNumbers(1, 2, 'd'));
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eecb2df9-66d3-4a22-b30c-bbeac148406d/Untitled.png)
+
+→ 잘못된 타입의 파라미터가 전달되었다고 에러가 나며 앱이 죽는 것을 확인할 수 있다.
