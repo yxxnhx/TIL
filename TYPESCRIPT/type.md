@@ -190,7 +190,7 @@ function print() {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bc5bf265-d6a7-42f2-b32a-0592fb4969c4/Untitled.png)
+![스크린샷 2023-01-09 오후 11 25 53](https://user-images.githubusercontent.com/50559373/211385828-b4ac7bc0-367a-432f-a512-41615e8e3603.png)
 
 → 무언가를 프린트하는 함수, 콘솔에 출력만 할뿐 아무것도 리턴하지 않는 함수에 커서를 올리면 void라고 뜨는 것을 확인할 수 있다.
 
@@ -353,7 +353,8 @@ printName('yxxnhx', 'seo');
 printName('yxxn');
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/437d2b58-dd2d-4d9a-82cf-c1a5a33ff725/Untitled.png)
+![스크린샷 2023-01-10 오전 12 15 15](https://user-images.githubusercontent.com/50559373/211385897-12a9c53a-069f-4fad-b5bf-e6aab20a10d3.png)
+
 
 → 곧바로 두 개의 인수가 필요한데 하나만 할당했다고 에러가 뜨는 것을 확인할 수 있다.
 
@@ -363,7 +364,8 @@ printName('yxxn');
 printName('Anna', undefined);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd948d71-3dbf-4791-aa20-4e016043b75d/Untitled.png)
+![스크린샷 2023-01-10 오전 12 16 20](https://user-images.githubusercontent.com/50559373/211385937-edb228af-4792-4ed5-8e46-ffc485baa0e2.png)
+
 
 → undefined라고 잘못 할당했다는 에러가 뜨는 것을 확인할 수 있다.
 
@@ -456,6 +458,7 @@ function addNumbers(...numbers: number[]): number {
 console.log(addNumbers(1, 2, 'd'));
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eecb2df9-66d3-4a22-b30c-bbeac148406d/Untitled.png)
+![스크린샷 2023-01-10 오전 12 32 54](https://user-images.githubusercontent.com/50559373/211385981-ef645d19-edf8-401f-b5e0-0c059e5bab4a.png)
+
 
 → 잘못된 타입의 파라미터가 전달되었다고 에러가 나며 앱이 죽는 것을 확인할 수 있다.
