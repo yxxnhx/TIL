@@ -14,7 +14,7 @@
 
 <br />
 
-## CSS / SASS & SCSS / Styled-components
+## CSS / SASS & SCSS / Styled-components / Emotion
 
 - [기초](/CSS/basic.md)
 - [단위](/CSS/unit.md)
@@ -72,6 +72,14 @@
 - [RORO 패턴]()
 - [프로토타입](/JAVASCRIPT/proto.md)
 
+<br />
+
+## TYPESCRIPT
+
+- [타입](/TYPESCRIPT/type.md)
+
+<br />
+
 ## REACT
 
 - [기초](/REACT/basic.md)
@@ -83,10 +91,14 @@
 - [Props Drilling](/REACT/props-drilling.md)
 - [React 생략](/REACT/remove-import.md)
 
+<br />
+
 ## TDD
 
 - [jest & react testing library](/REACT/TDD/jest.md)
 - [Test 코드 짜는 법](/REACT/TDD/tdd.md)
+
+<br />
 
 ## GITHUB
 
