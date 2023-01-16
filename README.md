@@ -76,6 +76,7 @@
 
 ## TYPESCRIPT
 
+- [왜 타입스크립트일까?](/TYPESCRIPT/basic.md)
 - [타입](/TYPESCRIPT/type.md)
 
 <br />
