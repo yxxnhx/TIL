@@ -257,3 +257,194 @@ useRouter는 React Hook이다.
 → 삼항연산자를 이용하여 간단하게 현재 경로일 때는 빨간색 아닐 때는 파란색이 뜰 수 있도록 하였다.
 
 ### 그렇다면 CSS Modules을 활용하여 스타일링을 본격적으로 해보자!
+
+NavBar.module.css 생성
+
+```css
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: tomato;
+}
+```
+
+먼저 간단하게 nav 전체에 백그라운드 컬러를 설정하여보자.
+
+그렇다면 이제 NavBar 컴포넌트에서 설정해보자.
+
+```jsx
+*import* styles *from* './NavBar.module.css';
+```
+
+먼저 css 모듈을 import 한 후 어떻게 설정해야 할까?
+
+```jsx
+<nav className="nav">
+  <Link href="/">Home</Link>
+  <Link href="about">About</Link>
+</nav>
+```
+
+위처럼 평소 스타일링하던 것처럼 하면 과연 먹힐까?
+
+정답은 아니다. 모듈을 사용하기 위해서는 string으로 불러오는 것이 아닌 모듈이기 때문에 오브젝트에서 프로퍼티 형식으로 적어주어야 한다.
+
+```jsx
+<nav className={styles.nav}>
+  <Link href="/">Home</Link>
+  <Link href="about">About</Link>
+</nav>
+```
+
+→ 이제 정상적으로 배경색이 들어간 것을 확인할 수 있다.
+
+그렇다면 이제 이전에 인라인 형식으로 넣었던 스타일링을 모듈로 한번 작성해보자.
+
+```css
+.active {
+  color: tomato;
+}
+```
+
+먼저 눌렸을 때의 색깔이 변하게 스타일링을 설정 후에 어떻게 하면 될까?
+
+```jsx
+<nav>
+  <Link href="/" className={router.pathname === '/' ? styles.active : ''}>
+    Home
+  </Link>
+  <Link
+    href="about"
+    className={router.pathname === '/about' ? styles.active : ''}
+  >
+    About
+  </Link>
+</nav>
+```
+
+이렇게 간단하게 문제를 해결할 수 있었다.
+
+그렇다면 만약 기본적인 link 스타일링에 active가 붙었을 때만 스타일링이 추가되게 하고 싶다면 어떻게 해야 할까?
+
+방법은 두 가지이다.
+
+- 백틱을 이용하여 더하기
+
+```jsx
+<Link
+  href="/"
+  className={`${styles.link} + ${router.pathname === '/' ? styles.active : ''}`}
+>
+  Home
+</Link>
+```
+
+- 배열 형식으로 사용하기
+
+```jsx
+<Link
+  href="about"
+  className={[
+    styles.link,
+    router.pathname === '/about' ? styles.active : '',
+  ].join(' ')}
+>
+  About
+</Link>
+```
+
+→ 한 클래스 이름과 다른 클래스 이름의 배열을 만들고 공백을 간격으로 한 문자열로서 합쳐주는 것
+
+join은 한 배열을 다른 한 문자열로 바꿔주는 방법이다.
+
+이렇게 주로 사용하는 방법 두 가지를 확인하며 장단점을 알 수 있다.
+
+module의 장점
+
+- 클래스 혹은 아이디 이름이 중복되어도 모듈화가 되기 때문에 오버라이딩이 되거나 문제시가 되지 않는다.
+
+module의 단점
+
+- 파일을 하나씩 새로 만들어야 한다.
+- 클래스 이름을 모두 기억하고 있어야만 한다.
+- 클래스 이름 자체를 구현하는 것이 조건이 붙었을 때 복잡해진다.
+
+**그렇다면 모듈을 이용하지 않고 스타일링할 수 있는 방법이 없을까?**
+
+### Built-In CSS Support (내장 CSS 지원)
+
+Next.js를 사용하면 JavaScript 파일에서 CSS 파일을 가져올 수 있다.
+
+이것은 Next.js가 import 개념을 JavaScript 이상으로 확장하기 때문에 가능하다
+
+- CSS-in-JS
+
+격리된 범위 CSS에 대한 지원을 제공하기 위해 styled-jsx를 번들로 제공한다.
+
+목표는 서버 렌더링을 지원하지 않고 JS 전용인 Web Components와 유사한 "Shadow CSS"를 지원한다
+
+[Basic Features: Built-in CSS Support | Next.js](https://nextjs.org/docs/basic-features/built-in-css-support#css-in-js)
+
+### styled-jsx
+
+styled-jsx를 사용하는 컴포넌트를 확인해보자
+
+```jsx
+<style jsx>
+  {`
+		CSS 스타일..
+	`}
+</style>
+```
+
+**styled-jsx**
+
+[https://github.com/vercel/styled-jsx](https://github.com/vercel/styled-jsx)
+
+한번 적용시켜보자.
+
+```jsx
+<nav>
+  <Link href="/" legacyBehavior>
+    <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
+  </Link>
+  <Link href="about" legacyBehavior>
+    <a className={router.pathname === '/about' ? 'active' : ''}>About</a>
+  </Link>
+  <style jsx>{`
+    nav {
+      background-color: tomato;
+    }
+    a {
+      text-decoration: none;
+    }
+    .active {
+      color: white;
+    }
+  `}</style>
+</nav>
+```
+
+→ Link 자체에는 클래스 네임을 주거나 스타일링을 줄 수 없으니 legacyBehavior를 추가하여 a태그를 넣어도 문제시 되지 않을 수 있도록 설정해주었다.
+
+**legacyBehavior**
+
+기본값은 false인데 link의 자식 요소로 a가 들어가도 true가 될 수 있도록 변경해주는 것이다.
+
+[next/link | Next.js](https://nextjs.org/docs/api-reference/next/link)
+
+정상적으로 스타일링이 들어가는 것을 확인할 수 있다.
+
+**그런데 만약 동일한 클래스 네임으로 다른 컴포넌트에서 사용한다면 어떻게 될까?**
+
+정답은 styled jsx를 사용하기 때문에 사용한 이 스코프, 이 컴포넌트 내부로만 범위가 한정되기 때문에 오버라이딩 되지 않아 문제시 되지 않는다.
+
+즉, 다른 컴포넌트에서 NavBar의 스타일링을 바꾸려고 해도 바뀌지 않는다.
+
+- Adding Component-Level CSS
+
+Next.js는[name].module.css 파일 명명 규칙을 사용하여 CSS Module을 지원한다.
+
+- Sass Support
+
+Next.js를 사용하면 .scss 및.sass 확장자를 모두 사용하여 Sass를 가져올 수 있다.
