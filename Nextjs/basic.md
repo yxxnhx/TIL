@@ -84,9 +84,24 @@ export default function about() {
 
 next.js에서는 404 페이지를 커스텀할 수 있기 때문에 매우 유용하게 쓰일 수 있다.
 
+pages 폴더 안에 있는 파일명에 따라 route가 결정된다.
+
+pages/about.js 생성 시
+
+- localhost:3000/about (O)
+- localhost:3000/about-us(X)
+
+다만 예외사항으로, index.js의 경우에는 앱이 시작하는 파일이라고 보면 된다.
+
+즉 localhost:3000 그 자체다 뒤에 /index 로 붙이면 안된다.
+
+이 강의를 들을 때는 import react from "react"를 쓸 필요가 없다.
+
+다만 useState,useEffect, lifecycle method 같은 애들을 써야 할 경우에는 꼭 import를 해줘야 한다.
+
 또한 react를 import하지 않고 jsx를 사용할 수 있다. 그러나 react method(useState, userEffect)를 사용하려면 react를 import해줘야한다.
 
-**next.js**의 가장 좋은 점 중에 하나는 모든 페이지들이 **pre-rendering** 된다는 것이다. 이것들은 정적(static)으로 생성된다.
+**next.js**의 가장 좋은 점 중에 하나는 모든 페이지들이 **pre-rendering, 즉 미리 랜더링**된다는 것이다. 이것들은 정적(static)으로 생성된다.
 
 create react app을 사용하면 CSR(Client Side Render)를 하는 애플리케이션을 만들게 된다.
 
@@ -134,8 +149,111 @@ export default function Home() {
 
 페이지를 딱 열면 보는 것이 위에서 봤던 html코드이다. 그리고 나서 react.js가 클라이언트로 전송됐을 때, react.js앱이 된다. 이렇게 react.js를 프론트엔드안에서 실행하는 걸 **hydration**이라고 부른다.
 
-![https://blog.kakaocdn.net/dn/cxEMK3/btrwn4SSjAC/1hw7M5EsJKf81BWKJRltr0/img.png](https://blog.kakaocdn.net/dn/cxEMK3/btrwn4SSjAC/1hw7M5EsJKf81BWKJRltr0/img.png)
+```jsx
+import { useState } from 'react';
+
+export default function Home() {
+  const [counter, setCounter] = useState(0);
+  return (
+    <div>
+      <h1>Hello {counter}</h1>
+      <button onClick={() => setCounter((prev) => prev + 1)}>+</button>
+    </div>
+  );
+}
+```
 
 next.js는 react.js를 백엔드에서 동작시켜서 해당 페이지를 미리 만든다. 이게 component들을 render시킨다. 렌더링이 끝나면 이게 html이 되고, 만들어진 html을 아까 봤던 페이지 소스 안에 넣어준다.
 
 페이지 소스안에 html이 미리 들어가있게 된다면 SEO에 유리하다는 장점을 가진다.
+
+### 그렇다면 이제 네비게이션을 만들면서 routing을 해보자.
+
+components > NavBar.js 생성
+
+```jsx
+export default function NavBar() {
+  return (
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </nav>
+  );
+}
+```
+
+이 NavBar 컴포넌트를 각각 index와 about에 import를 시키면 정상적으로 네비게이션 바가 출력이 되어 이동이 되는 것을 확인할 수 있다.
+
+그런데 다시 NavBar로 돌아가서 보면 다음과 같은 에러가 떠 있는 것을 확인할 수 있다.
+
+![스크린샷 2023-01-24 오후 11.19.31.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8746e6f5-0851-4198-8b68-db7221cc278d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-01-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.19.31.png)
+
+→ nextjs에서 a로 navigate를 하지 말라는 에러가 뜨는 것을 확인할 수 있다.
+
+그 대신 Link를 사용하라는 추천도 함께 있다.
+
+이유는 React와 동일하다.
+
+리액트에서 라우팅할 때 a로 할 경우 계속해서 새로고침이 되면서 속도가 느려지고
+
+페이지 간 클라이언트 측 경로 전환을 활성화하고 single-page app 경험을 제공하려면 Link컴포넌트가 필요하다.
+
+[no-html-link-for-pages | Next.js](https://nextjs.org/docs/messages/no-html-link-for-pages)
+
+그렇다면 Link를 활용하여 다시 설정해보자.
+
+```jsx
+import Link from 'next/link';
+
+export default function NavBar() {
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="about">About</Link>
+    </nav>
+  );
+}
+```
+
+→ 더이상 에러가 뜨지 않는 것을 확인할 수 있다.
+
+또한 네트워크에서 확인해보면 더이상 새로고침이 되지 않는 것 또한 확인할 수 있다.
+
+그렇다면 한번 현재의 경로를 확인할 수 있는 useRouter를 활용하여 확인해보자.
+
+```jsx
+const router = useRouter();
+console.log(router);
+```
+
+![스크린샷 2023-01-24 오후 11.25.25.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/79079aec-d6b2-48bd-b470-d4c904c073f5/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-01-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.25.25.png)
+
+→ 현재의 경로와 라우팅 정보를 가져와 어디인지 확인할 수 있다.
+
+앱의 함수 컴포넌트에서 router객체 내부에 접근하려면 userRouter()훅을 사용할 수 있다.
+
+useRouter는 React Hook이다.
+
+즉, 클래스와 함께 사용할 수 없다. withRouter를 사용하거나 클래스를 함수 컴포넌트로 래핑할 수 있다.
+
+**그렇다면 간단하게 스타일링을 입혀보자**
+
+```jsx
+<nav>
+  <Link href="/" style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>
+    Home
+  </Link>
+  <Link
+    href="about"
+    style={{ color: router.pathname === '/about' ? 'red' : 'blue' }}
+  >
+    About
+  </Link>
+</nav>
+```
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4e2edee6-d542-45cd-a24d-7800e68b6d4f/Untitled.png)
+
+→ 삼항연산자를 이용하여 간단하게 현재 경로일 때는 빨간색 아닐 때는 파란색이 뜰 수 있도록 하였다.
+
+### 그렇다면 CSS Modules을 활용하여 스타일링을 본격적으로 해보자!
