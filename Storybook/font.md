@@ -46,7 +46,8 @@ function App() {
 export default App;
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7831e3b8-6fff-4bf1-b6e3-12843496bf0b/Untitled.png)
+![스크린샷 2023-01-30 오전 12 31 37](https://user-images.githubusercontent.com/50559373/215337343-9a6f3e91-8ece-468e-af3b-788d653f63b8.png)
+
 
 로컬에서는 정상적으로 Unbounded 폰트가 제대로 반영되어 출력된 것을 확인할 수 있지만 스토리북에서는 이 폰트 대신에 기본 폰트가 출력되는 것을 확인할 수 있다.
 
@@ -55,5 +56,6 @@ export default App;
 [Story rendering](https://storybook.js.org/docs/react/configure/story-rendering)
 
 스토리북에서는 폰트 링크가 지정이 되어있지 않아 일어난 일이다.
+![스크린샷 2023-01-30 오전 12 34 45](https://user-images.githubusercontent.com/50559373/215337351-e1bf6060-d896-45ee-a86c-c165a41b4422.png)
 
 리액트에서 index.html이 있듯이 스토리북에서도 preview-head.html에도 동일하게 링크를 추가해주면 문제는 깔끔하게 해결이 된다.
