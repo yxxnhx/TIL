@@ -23,7 +23,8 @@ chromatic으로 story 배포 > figma에서 플러그인 다운로드 > chromatic
 
 그 이후에 Storybook Connect 플러그인을 다운 받는다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6fcc1379-bf87-48d4-8e46-5c731dc1781e/Untitled.png)
+![스크린샷 2023-01-30 오전 12 01 43](https://user-images.githubusercontent.com/50559373/215336063-a0362a8d-9862-401e-9095-eb071b0f0755.png)
+
 
 그 이후 chromatic과 연결한 후 연동하고자 하는 컴포넌트의 링크를 연결해주면 끝!
 
@@ -31,7 +32,8 @@ chromatic으로 story 배포 > figma에서 플러그인 다운로드 > chromatic
 
 연결을 완료하면 아래와 같이 우측 하단에 스토리를 볼 수 있거나 스토리북 링크로 들어가 다른 스토리들을 볼 수도 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b88fc2a-3530-4e21-aeb7-73da40ae9d5a/Untitled.png)
+![스크린샷 2023-01-30 오전 12 02 48](https://user-images.githubusercontent.com/50559373/215336067-afeb03ed-e0cd-4b22-8315-29eeae365129.png)
+
 
 ### 2. 스토리에서 피그마 보기
 
@@ -90,6 +92,8 @@ myStory.parameters = {
 
 모든 설정을 마친 후에 npm run storybook을 하면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/27c3ec75-905d-44f7-b038-bf53ef7806b8/Untitled.png)
+<img width="797" alt="스크린샷 2023-01-30 오전 12 15 02" src="https://user-images.githubusercontent.com/50559373/215336072-9136f189-6ccb-4632-bb1c-c5f484f68f2f.png">
+
+
 
 이와 같이 연동이 된 것을 확인할 수 있다.
