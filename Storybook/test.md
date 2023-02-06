@@ -155,10 +155,11 @@ test('Main Button이 랜더링 된다', () => {
 이제 한번 테스트를 돌려보자
 ![스크린샷 2023-01-29 오후 9 16 24](https://user-images.githubusercontent.com/50559373/215325765-4083572d-fa3b-407a-a53b-9e275de2b406.png)
 
-
 정상적으로 모든 테스트가 통과되는 것을 확인할 수 있다.
 
 혹은 `coverage/lcov-report/index.html`을 서버로 연결하여 자세히 보는 방법도 있다
 <img width="639" alt="스크린샷 2023-01-29 오후 9 18 50" src="https://user-images.githubusercontent.com/50559373/215325768-2f7c0206-5885-4f9e-aa53-17318db91843.png">
 
 이와 같이 어느 부분이 통과가 되었는지를 손쉽게 확인할 수 있다
+
+더 다양한 테스트 코드를 짜고 싶다면 jest와 react testing library 공식 문서를 참고해서 조금 더 세분화해보도록 하자.
