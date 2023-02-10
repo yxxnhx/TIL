@@ -1,4 +1,4 @@
-## CSR : Client Side Redering
+## CSR : Client Side Rendering
 
 리액트 만을 사용했을 때 CSR을 하게 된다.
 
