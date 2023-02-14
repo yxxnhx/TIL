@@ -8,7 +8,8 @@
 let text = "hello";
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/442d5ea1-4b41-4c47-9b3d-17780acde5f0/Untitled.png)
+![스크린샷 2023-02-15 오전 1 45 24](https://user-images.githubusercontent.com/50559373/218814353-e54115d3-a1e5-401b-8c86-ef56cd02a5ec.png)
+
 
 위처럼 타입을 설정해주지 않아도 자동을 타입 추론을 해서 타입이 string 문자열이라고 나타내주고 있다.
 
@@ -18,7 +19,8 @@ function print(message) {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d44495f-5a12-4258-b79e-9bbe41bc874c/Untitled.png)
+![스크린샷 2023-02-15 오전 1 46 44](https://user-images.githubusercontent.com/50559373/218814388-6ad80655-362a-4b33-881e-5418e5f88906.png)
+
 
 이처럼 함수에 받을 인자의 타입을 설정해주지 않았다면 암시적으로 any가 붙지만 타입을 설정해주는 것이 좋다고 안내가 뜨는 것을 확인할 수 있다.
 
@@ -30,7 +32,8 @@ function print(message = "hello") {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e205e669-7c97-438f-ba20-26f8c18021a0/Untitled.png)
+![스크린샷 2023-02-15 오전 1 48 02](https://user-images.githubusercontent.com/50559373/218814478-2d97824c-e328-4276-b458-fd0f703f845b.png)
+
 
 타입 추론에 의해서 string이 선언된 것을 확인할 수 있다.
 
@@ -44,7 +47,8 @@ function add(x: number, y: number) {
 const result = add(1, 2);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1eaa539a-7fd3-456c-a439-71ffc4014aa4/Untitled.png)
+![스크린샷 2023-02-15 오전 1 49 19](https://user-images.githubusercontent.com/50559373/218814498-1b80e708-f25e-4b20-8fdd-e4b9a9549a85.png)
+
 
 숫자를 받는 함수의 반환값을 result에 할당을 하니 자동으로 타입추론에 의해서 number이 선언된 것을 확인할 수 있다.
 
