@@ -32,7 +32,7 @@ const student: Student = {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82653ab1-a1bc-4929-9c87-e00b9512192f/Untitled.png)
+![스크린샷 2023-02-13 오전 1 06 35](https://user-images.githubusercontent.com/50559373/218813889-cc5ea8d1-e107-4ba8-9b24-6b913117cb21.png)
 
 이처럼 Student라는 오브젝트에 name과 age가 들어간다고 선언을 해두고 다른 것을 할당하려고 할 시에 위와 같은 에러가 뜨는 것을 확인할 수 있다.
 
@@ -56,7 +56,8 @@ let yxxnName: Name;
 yxxnName = "adsf";
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6d1aee69-953f-4005-97b8-4c924288f5f7/Untitled.png)
+
+![스크린샷 2023-02-15 오전 12 02 15](https://user-images.githubusercontent.com/50559373/218813993-dc4fadcd-ef3b-4fbc-8f1d-70b8e3da08c7.png)
 
 yxxnName에는 name이라는 타입을 할당하였기 때문에 name 외에는 그 어떠한 것도 할당을 받을 수 없다.
 
@@ -82,7 +83,8 @@ function move(direction: Direction) {
 
 방향을 나타내는 타입을 선언한 후 move 함수를 호출해보자.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96fa0fbb-2d85-4e69-a11a-f08f1c269f79/Untitled.png)
+![스크린샷 2023-02-15 오전 12 12 55](https://user-images.githubusercontent.com/50559373/218814070-759db6b7-511e-4f95-9759-8a3851678627.png)
+
 
 → 할당할 수 있는 가능한 모든 인자를 자동으로 추천이 뜨는 것을 확인할 수 있다.
 
