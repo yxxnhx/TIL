@@ -135,3 +135,108 @@ type Direction = "top" | "bottom" | "left" | "right";
 ```
 
 → 이러한 유니언 타입은 인터페이스로는 정의할 수 없다
+
+**그렇다면 이제 개념적인 측면에서 이 둘의 차이를 생각해보자**
+
+**interface의 정의는 무엇일까?**
+
+어떤 것의 규격 사항이다. 다른 사람들과 소통할 때 오브젝트와 오브젝트 간의 의사소통을 할 때 정해진 인터페이스를 토대로 서로간의 상호작용을 할 수 있도록 도와준다.
+
+즉, 쉽게 말하면 서로간의 약속을 할 수 있는 계약서라고 할 수 있다.
+
+**다음의 예시를 보며 다시 생각해보자**
+
+CoffeeMaker 안에서 makeCoffee라는 함수가 들어있다고 정의해보자.
+
+그래서 구현하는 사람들이 이 CoffeeMaker를 활용하여 동일한 규격사항을 따라 다양한 곳에서 CoffeMaker를 활용하여 에스프레소 머신, 바닐라라떼 머신, 돌체콜드브루 머신 등 다양하게 활용할 수 있다고 해보자.
+
+**그렇다면 이 상황에서는 type이 적절할까, interface가 적절할까?**
+
+```tsx
+// Type
+type CoffeeMaker = {
+  coffeeBeans: number;
+  makeCoffee: (shots: number) => Coffee;
+};
+
+class CoffeeMachine implements CoffeeMaker {
+  coffeeBeans: number;
+  makeCoffee(shots: number) {
+    return {};
+  }
+}
+
+//Interface
+interface CoffeeMaker {
+  coffeeBeans: number;
+  makeCoffee: (shots: number) => Coffee;
+}
+
+class CoffeeMachine implements CoffeeMaker {
+  coffeeBeans: number;
+  makeCoffee(shots: number) {
+    return {};
+  }
+}
+```
+
+→ 이와 같이 어떤 특정한 규격을 정의하는 것이라면, 이 규격을 통해서 어떤 것이 구현된다면 interface를 쓰는 것이 더 정확하다
+
+이처럼 interface는 누군가가 구현할 사람이 있다면 정의해서 사용하는 것이 좋다.
+
+**그렇다면 type은 무엇일까?**
+
+어떠한 데이터를 담을 때 데이터의 모습, 데이터의 타입을 결정하는 것이다.
+
+**다음의 예시를 보자.**
+
+```tsx
+interface Position {
+  x: number;
+  y: number;
+}
+
+const pos: Position = { x: 0, y: 1 };
+printPosition(pos);
+```
+
+→ Position에는 x와 y라는 데이터가 담겨있다.
+
+이런 경우에는 타입을 쓰는 것이 더 정확하다.
+
+```tsx
+type Position = {
+  x: number;
+  y: number;
+};
+
+const pos: Position = { x: 0, y: 1 };
+printPosition(pos);
+```
+
+위와 같이 인터페이스를 통해 데이터를 담고 있다면 다른 사람들이 코드를 볼 때 이 Position 인터페이스를 통해서 다른 것을 구현하는 클래스가 있는가? 에 대한 의문을 가지게 된다.
+
+그러므로 어떠한 규격사항으로 구현하는 것이 아니라 데이터를 담을 목적으로 만든다면 타입을 사용하는 것이 좋다.
+
+타입스크립트 초창기에는 타입이 현재와 같이 강력한 기능이 없어 웬만한 것들은 인터페이스를 이용하여 정의하는 것을 권고하였지만 지금은 점점 타입이 강력해지면서 인터페이스와 타입을 구분지어서 사용하는 것이 좋다.
+
+**다시 한번 정리해보자**
+
+- interface: 규격사항
+  → 올바르게 구현하는 것이 목적
+- type alias: 데이터의 묘사
+  → 데이터를 담을 목적
+
+**조금 더 쉽게 설명해보자면 그냥 문장으로만 놓고 있는 그대로 한번 읽어보자.**
+
+- 이 클래스는 인터페이스를 구현한다(O)
+- 이 클래스는 이 타입을 구현한다(???)
+
+- 이 컴포넌트에 전달할 수 있는 Props 타입으로는 이 타입이다(O)
+- 이 컴포넌트에 전달할 수 있는 Props 타입으로는 이 인터페이스이다(???)
+
+이 두 가지 예시 문장으로만 보아도 확인할 수 있다.
+
+인터페이스는 규격사항을 정의할 때, 타입은 데이터를 담고 묘사할 때 사용하는 것이 좋다.
+
+다만, 이것은 아직도 많은 개발자들이 이야기가 갈리고 있다. 이 부분은 회사나 팀마다 선호하는 방식이 있다.ㄴ
