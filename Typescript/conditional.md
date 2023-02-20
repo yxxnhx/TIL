@@ -1,4 +1,4 @@
-# condition type
+# Conditional type
 
 ```tsx
 type Check<T> = T extends string ? boolean : number;
