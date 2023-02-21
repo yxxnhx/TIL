@@ -93,7 +93,8 @@ interface PositionInterface {
 
 → 이와 같이 앞에서 선언하였다가 뒤에서 추가로 더 선언을 해주어 결합하는 것이 가능하다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b28273e8-1f94-4eee-830f-441fa4b3d855/Untitled.png)
+
+![스크린샷 2023-02-20 오후 9 35 13](https://user-images.githubusercontent.com/50559373/220396008-84f17e10-f5f9-402f-b00c-5757b3321775.png)
 
 → 이제 PositionInterface를 사용하는 곳에서 z가 없다는 에러가 뜨는 것을 확인할 수 있다.
 
@@ -101,7 +102,7 @@ interface PositionInterface {
 
 **그렇다면 타입은 안될까?**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d332431-8639-4162-a038-9427eaa0ed48/Untitled.png)
+![스크린샷 2023-02-20 오후 9 37 26](https://user-images.githubusercontent.com/50559373/220396026-0bb9a2f9-4d54-4eb9-8f04-167d01029047.png)
 
 → 바로 식별자가 중복되었다는 에러가 뜨는 것을 확인할 수 있다.
 
@@ -118,7 +119,7 @@ type Person = {
 type Name = Person["name"]; // string
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9efd1203-b16a-4b24-baac-bf0ad7042381/Untitled.png)
+![스크린샷 2023-02-20 오후 9 40 20](https://user-images.githubusercontent.com/50559373/220396048-786de4a8-34a3-44ab-9d5c-ba5ff1f51902.png)
 
 → name의 타입을 Person의 name의 타입을 사용하겠다고 설정이 가능하다.
 
@@ -239,4 +240,4 @@ printPosition(pos);
 
 인터페이스는 규격사항을 정의할 때, 타입은 데이터를 담고 묘사할 때 사용하는 것이 좋다.
 
-다만, 이것은 아직도 많은 개발자들이 이야기가 갈리고 있다. 이 부분은 회사나 팀마다 선호하는 방식이 있다.ㄴ
+다만, 이것은 아직도 많은 개발자들이 이야기가 갈리고 있다. 이 부분은 회사나 팀마다 선호하는 방식이 있다.
