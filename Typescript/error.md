@@ -22,7 +22,7 @@ const array = new Array(1000000000000);
 
 → 만들 때는 에러가 발생하지 않는다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b10137e-8b4a-4d7b-9936-fb58f42fc1bc/Untitled.png)
+![스크린샷 2023-02-20 오전 12 07 27](https://user-images.githubusercontent.com/50559373/220395499-a777f69c-8200-481a-8849-7c65568425ba.png)
 
 그러나 ts-node를 활용하여 확인해보면 유효하지 않은 길이의 배열을 사용했다는 에러가 발생하는 것을 확인할 수 있다.
 
@@ -73,7 +73,8 @@ const invalid: never = direction;
 
 이와 같이 direction이라고 선언을 하였지만 타입은 never이라고 해보자.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/204c217d-805c-48f7-b8dc-8e58b84d0645/Untitled.png)
+
+![스크린샷 2023-02-20 오전 12 16 04](https://user-images.githubusercontent.com/50559373/220395579-c4e47482-ac45-46ec-abaf-0be49d8448a1.png)
 
 → string 타입은 never 타입에 할당할 수 없다는 에러가 발생하는 것을 확인할 수 있다.
 
@@ -123,7 +124,7 @@ console.log(readFile(fileName));
 closeFile(fileName);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/579b5924-61ca-4bc8-ae32-62e45335ba35/Untitled.png)
+![스크린샷 2023-02-20 오전 12 27 43](https://user-images.githubusercontent.com/50559373/220395639-6e3d0e0d-6908-44ee-ac6a-0509bf42a22d.png)
 
 → 앱이 죽고 파일이 존재하지 않고 그 파일 이름과 함께 정확한 위치정보까지 알려주고 있다.
 
@@ -264,7 +265,7 @@ const app = new App(service);
 app.run();
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/77ee815d-1654-41b4-814c-c0a3c42d2253/Untitled.png)
+![스크린샷 2023-02-20 오전 12 53 06](https://user-images.githubusercontent.com/50559373/220395700-030993ad-9281-406f-9472-689e51884a41.png)
 
 → 현재 network가 없어서 에러가 뜨는 것을 확인할 수 있다.
 
