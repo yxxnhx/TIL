@@ -46,7 +46,8 @@ console.log(update);
 
 그러나 여기서 한가지 의문이 생긴다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6eb45d9a-784d-4fbc-a7e8-52a1f08d64f0/Untitled.png)
+
+![스크린샷 2023-02-21 오전 12 06 14](https://user-images.githubusercontent.com/50559373/220396361-221ef285-5f77-448f-b80b-7cc5df68d10b.png)
 
 priority에 마우스를 올려보면 선언할 수 있는 것들이 high, low 외에 설정해주지 않은 undefined가 뜨는 것을 확인할 수 있다.
 
