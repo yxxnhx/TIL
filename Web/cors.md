@@ -20,7 +20,7 @@
 ## CORS란 무엇인가?
 
 일단 요청이 실패해서 뜨는 에러인건 알겠는데 뭘까?
-![](https://velog.velcdn.com/images/yxxnhx/post/471e850b-0f10-469f-bc2e-feffdb632163/image.png)
+
 요청이 실패했는지 알기 위해선 **도메인, 프로토콜, 포트 세 가지에 의해 결정되는 오리진(origin)** 이라는 핵심부터 알아야 한다.
 
 - Protocol(Scheme) : http, https
