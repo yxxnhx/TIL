@@ -44,19 +44,12 @@ https://www.chartjs.org/docs/latest/getting-started/
 그렇다면 내가 마주한 문제들과 해결해나간 과정들을 기록해보려한다.
 나중에 다시 사용해야할 때 까먹을까봐 더 지나기 전에 기록해보자!
 
-### 1. 두 개의 데이터를 하나의 툴팁에 넣기
+- [두 개의 데이터를 하나의 툴팁에 넣기](/Library/ChartJS/tooltip.md)
+- [커스텀 툴팁 만들기](/Library/ChartJS/custom-tooltip.md)
+- [그래프 안의 그리드를 없애고 x축, y축만 컬러 넣기](/Library/ChartJS/remove-grid-without-axis.md)
+- [bar형 그래프 위에 값 넣기](/Library/ChartJS/add_value_on_bar.md)
+- [그래프에 좌우 스크롤 넣기](/Library/ChartJS/add_scrollx.md)
+- [데이터 조건에 따라 그래프 새로 그리기](/Library/ChartJS/draw_new_chart.md)
+- [그래프 스크롤에 따른 툴팁 에러 해결하기](/Library/ChartJS/fix_scroll_error.md)
+- [CANVAS is already in use 에러 해결하기](/Library/ChartJS/fix_canvas_error.md)
 
-
-### 2. 커스텀 툴팁 만들기
-
-
-### 3. 그래프 안의 그리드를 없애고 x축, y축만 컬러 넣기
-
-
-### 4. bar형 그래프 위에 값 넣기
-
-
-### 5. 그래프에 좌우 스크롤 넣기
-
-
-### 6. 데이터 조건에 따라 그래프 새로 그리기
