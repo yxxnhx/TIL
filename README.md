@@ -98,6 +98,7 @@
 ## NEXT.JS
 
 - [기초](/NextJS/basic.md)
+- [ABOUT](/NextJS/about.md)
 
 <br />
 
