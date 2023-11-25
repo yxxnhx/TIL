@@ -99,6 +99,7 @@
 
 - [기초](/NextJS/basic.md)
 - [ABOUT](/NextJS/about.md)
+- [scripts](/NextJS/scripts.mds)
 
 <br />
 
