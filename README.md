@@ -101,7 +101,7 @@
 - [ABOUT](/NextJS/about.md)
 - [scripts](/NextJS/scripts.md)
 - [route](/NextJS/route.md)
-- [스타일](/NextJs/style.md)
+- [스타일](/NextJS/style.md)
 - [스크립트 추가하기](/NextJS/script.md)
 
 <br />
