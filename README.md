@@ -103,6 +103,7 @@
 - [route](/NextJS/route.md)
 - [스타일](/NextJS/style.md)
 - [스크립트 추가하기](/NextJS/script.md)
+- [레이아웃](/NextJS/layout.mds)
 
 <br />
 
