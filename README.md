@@ -69,7 +69,7 @@
 - [Garbage Collector](/JavaScript/garbage.md)
 - [실행 컨텍스트](/JavaScript/execution.md)
 - [호이스팅](/JavaScript/hoisting.md)
-- [RORO 패턴]()
+- [RORO 패턴](/JavaScript/roro.md)
 - [프로토타입](/JavaScript/proto.md)
 
 <br />
